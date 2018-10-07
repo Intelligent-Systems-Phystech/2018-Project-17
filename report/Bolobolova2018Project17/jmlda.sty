@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%                The style file of International conference                 %%
-%%             Intelligent Information Processing, IIP-9 (2012)              %%
+%%                The style file of the journal of                      %%
+%%                Machine Learning and Data Analysis             %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%               copyleft (GPL)      K.V.Vorontsov, 2007-2012                %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -8,67 +8,70 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{jmlda}[2012/21/12 Journal of Machine Learning and Data Analysis]
 
-% Опция draft: выводить замечания, доп.информацию в оглавлении, статистику
+% РћРїС†РёСЏ draft: РІС‹РІРѕРґРёС‚СЊ Р·Р°РјРµС‡Р°РЅРёСЏ, РґРѕРї.РёРЅС„РѕСЂРјР°С†РёСЋ РІ РѕРіР»Р°РІР»РµРЅРёРё, СЃС‚Р°С‚РёСЃС‚РёРєСѓ
 \newif\ifdraft\draftfalse
 \DeclareOption{draft}{\drafttrue}
 
-% Опция writebat: выводить bat-файлы для формирования архивов
+% РћРїС†РёСЏ writebat: РІС‹РІРѕРґРёС‚СЊ bat-С„Р°Р№Р»С‹ РґР»СЏ С„РѕСЂРјРёСЂРѕРІР°РЅРёСЏ Р°СЂС…РёРІРѕРІ
 \newif\ifwritebat\writebatfalse
 \DeclareOption{writebat}{\writebattrue}
 
-% Опция writetab: выводить tab-файл со списком статей
+% РћРїС†РёСЏ writetab: РІС‹РІРѕРґРёС‚СЊ tab-С„Р°Р№Р» СЃРѕ СЃРїРёСЃРєРѕРј СЃС‚Р°С‚РµР№
 \newif\ifwritetab\writetabfalse
 \DeclareOption{writetab}{\writetabtrue}
 
-% Опция writehtml: выводить html-файл со списком статей
+% РћРїС†РёСЏ writehtml: РІС‹РІРѕРґРёС‚СЊ html-С„Р°Р№Р» СЃРѕ СЃРїРёСЃРєРѕРј СЃС‚Р°С‚РµР№
 \newif\ifwritehtml\writehtmlfalse
 \DeclareOption{writehtml}{\writehtmltrue}
 
 \ProcessOptions
 
-\RequirePackage[cp1251]{inputenc}
-%\RequirePackage[T2A]{fontenc}
+\RequirePackage{etex}
+\RequirePackage{fancyhdr}
+\RequirePackage{enumitem}
+\RequirePackage{hyphenat}
+%\RequirePackage{enumerate}
+%\RequirePackage{paralist}%[neverdecrease]
+\RequirePackage{cite}
+\RequirePackage{cmap}
+\RequirePackage[T2A]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[english,russian]{babel}
 \RequirePackage{amssymb}
 \RequirePackage{amsmath}
 \RequirePackage{mathrsfs}
 \RequirePackage{euscript}
 \RequirePackage{upgreek}
-\RequirePackage[english,russian]{babel}
+\RequirePackage[displaymath,mathlines]{lineno}
 \RequirePackage{array}
 \RequirePackage{theorem}
 \RequirePackage[ruled]{algorithm}
 \RequirePackage[noend]{algorithmic}
 \RequirePackage[all]{xy}
 \RequirePackage{graphicx}
-\RequirePackage{subfig}
-\RequirePackage{epstopdf}   % for Mikhail Burmistrov burmisha@gmail.com
-\RequirePackage{tikz}       % for Mikhail Burmistrov burmisha@gmail.com
-\RequirePackage{pgfplots}   % for Mikhail Burmistrov burmisha@gmail.com
-%\RequirePackage{psfrag}  % Pytiev_3
-%\RequirePackage{tikz}\usetikzlibrary{positioning}   % yangel
-%\RequirePackage{epic}
+\RequirePackage{epstopdf}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
 \RequirePackage{color}
-%\RequirePackage[footnotesize]{caption2}
 \RequirePackage{ifthen}
 \RequirePackage{url}
-%\RequirePackage{html}
 %\RequirePackage[colorlinks,urlcolor=blue]{hyperref}
 \RequirePackage{makeidx}
 \RequirePackage{pb-diagram}
-%\RequirePackage{lamsarrow, pb-lams, stmaryrd}  %% Gurov
-%% Двухколоночный набор:
-\RequirePackage{balance}  %% неверно обрабатываются сноски на балансируемой странице
-%\newcommand{\balance}{\relax}
-%\newcommand{\nobalance}{\relax}
-%\RequirePackage{multicol} %% глотает плавающие иллюстрации
-%\RequirePackage{dblfloatfix}  %% никакого эффекта!
-%\RequirePackage{cuted}  %% генерируется ошибка
-\RequirePackage{multirow} %% для Генрихова
+\RequirePackage{subfig}
+%% Р”РІСѓС…РєРѕР»РѕРЅРѕС‡РЅС‹Р№ РЅР°Р±РѕСЂ:
+%\RequirePackage{balance}  %% РЅРµРІРµСЂРЅРѕ РѕР±СЂР°Р±Р°С‚С‹РІР°СЋС‚СЃСЏ СЃРЅРѕСЃРєРё РЅР° Р±Р°Р»Р°РЅСЃРёСЂСѓРµРјРѕР№ СЃС‚СЂР°РЅРёС†Рµ
+\newcommand{\balance}{\relax}
+\newcommand{\nobalance}{\relax}
+%\RequirePackage{multicol} %% РіР»РѕС‚Р°РµС‚ РїР»Р°РІР°СЋС‰РёРµ РёР»Р»СЋСЃС‚СЂР°С†РёРё
+%\RequirePackage{dblfloatfix}  %% РЅРёРєР°РєРѕРіРѕ СЌС„С„РµРєС‚Р°!
+%\RequirePackage{cuted}  %% РіРµРЅРµСЂРёСЂСѓРµС‚СЃСЏ РѕС€РёР±РєР°
 
 \renewcommand{\baselinestretch}{1}
-%\renewcommand{\baselinestretch}{1.1} %для печати с большим интервалом
 
-% Для A5
+\renewcommand{\thesubfigure}{\textit{\asbuk{subfigure}}}
+
+% Р”Р»СЏ A5
 %\textheight=175mm
 %\headsep=5mm
 %\textwidth=117mm
@@ -76,11 +79,11 @@
 %\oddsidemargin=20mm
 %\evensidemargin=20mm
 
-% Для А4 в две колонки
+% Р”Р»СЏ Рђ4 РІ РґРІРµ РєРѕР»РѕРЅРєРё
 \textheight=240mm
 \textwidth=170mm
-\oddsidemargin=0mm
-\evensidemargin=-11mm
+\oddsidemargin=-5mm
+\evensidemargin=-5mm
 \topmargin=-10mm
 \footnotesep=3ex
 \columnsep=6mm
@@ -90,12 +93,11 @@
 \tolerance=9000
 \hbadness=2000
 \flushbottom
-%\raggedbottom
-% подавить эффект "висячих стpок"
+% РїРѕРґР°РІРёС‚СЊ СЌС„С„РµРєС‚ "РІРёСЃСЏС‡РёС… СЃС‚pРѕРє"
 \clubpenalty=10000
 \widowpenalty=10000
 
-%% Печать во весь лист
+%% РџРµС‡Р°С‚СЊ РІРѕ РІРµСЃСЊ Р»РёСЃС‚
 %% INTERFACE
 %\def\MinMargins{
 %    \textheight=240mm
@@ -106,427 +108,624 @@
 %    \footnotesep=3ex
 %}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Языковые настройки
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Р”Р»СЏ РѕР±РЅРѕРІР»РµРЅРЅРѕРіРѕ РїР°РєРµС‚Р° babel(russian.ldf version >= 1.2)%
+\addto\extrasenglish{\languageshorthands{russian}}
+
+\providecommand{\English}{
+\selectlanguage{english}\useshorthands{"}}
+
+\providecommand{\No}{\textnumero}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% РљРѕРјР°РЅРґР° РґР»СЏ РґСѓР±Р»РёСЂРѕРІР°РЅРёСЏ СЃРёРјРІРѕР»Р°, РїРѕ РєРѕС‚РѕСЂРѕРјСѓ СЂР°Р·СЂС‹РІР°РµС‚СЃСЏ С„РѕСЂРјСѓР»Р° РЅР° РґРІРµ СЃС‚СЂРѕРєРё
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}%
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% РЇР·С‹РєРѕРІС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\ruseng}[2]{\iflanguage{russian}{#1}\relax\iflanguage{english}{#2}\relax}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Оформление заголовков статей
+% РћС„РѕСЂРјР»РµРЅРёРµ Р·Р°РіРѕР»РѕРІРєРѕРІ СЃС‚Р°С‚РµР№
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newlength\vskipBeforeTitle
 \newlength\vskipAfterTitle
+\newlength\vskipBeforeSecondaryTitle
 
-% сделать неразрывные пробелы ещё и нерастяжимыми (например между фамилией и инициалами авторов)
+% СЃРґРµР»Р°С‚СЊ РЅРµСЂР°Р·СЂС‹РІРЅС‹Рµ РїСЂРѕР±РµР»С‹ РµС‰С‘ Рё РЅРµСЂР°СЃС‚СЏР¶РёРјС‹РјРё (РЅР°РїСЂРёРјРµСЂ РјРµР¶РґСѓ С„Р°РјРёР»РёРµР№ Рё РёРЅРёС†РёР°Р»Р°РјРё Р°РІС‚РѕСЂРѕРІ)
 \newcommand\unstretchspaces{\catcode`~=\active\def~{\;}}
 
-% Настройки заголовка статьи
+% РќР°СЃС‚СЂРѕР№РєРё Р·Р°РіРѕР»РѕРІРєР° СЃС‚Р°С‚СЊРё
 % INTERFACE
 \setlength\vskipBeforeTitle{3ex}
 \setlength\vskipAfterTitle{3ex}
+\setlength\vskipBeforeSecondaryTitle{-4ex}
+
 \newcommand\typeTitle[1]{{\Large\sffamily\bfseries #1}}
 \newcommand\typeAuthor[1]{{\itshape\bfseries #1}}
 \newcommand\typeOrganization[1]{{\small #1}}
 \newcommand\typeEmail[1]{{\ttfamily #1}}
 \newcommand\typeTocAuthorTitle[2]{{\unstretchspaces\itshape #1}\\ #2}
 \newcommand\typeAbstract[1]{%
-    \par\vskip\vskipAfterTitle
-    \noindent\parbox{159.3mm}{\small #1}%
+  %\par\noindent%\parbox{159.3mm}%
+  \begin{quotation}{\small #1}\end{quotation}%
+}
+\newcommand\typeEngAbstract[1]{%
+  %\par\noindent%\parbox{159.3mm}%
+  \begin{quotation}{\noindent\small #1}\end{quotation}%
+}
+\newcommand\typeDOI[1]{%
+  \begin{quotation}{\noindent \textbf{{\small DOI:}}  #1} \end{quotation}%
+}
+\newcommand\typeReceived{
+  \textit
+             {\ruseng{РџРѕСЃС‚СѓРїРёР»Р° РІ СЂРµРґР°РєС†РёСЋ \@received@rus}%
+                     {Received \@received@eng}%
+             }
 }
 
-% Вывод заголовка
+% Р’С‹РІРѕРґ Р·Р°РіРѕР»РѕРІРєР°
 \def\type@title{%
-    \noindent
-    \begingroup
-    % подготовка к выводу сноски с грантом
-    \setcounter{footnote}{0}%
-    \def\thefootnote{\fnsymbol{footnote}}%
-    %\def\@makefnmark{\hbox to 0pt{$^{\@thefnmark}$\hss}}%
-    \def\@makefnmark{$^{\@thefnmark}$}%
-    %\long\def\@makefntext##1{\parindent 1em\noindent\hbox to1.8em{\hss $\m@th ^{\@thefnmark}$}##1}%
-    \def\@makefntext##1{\noindent $\m@th ^{\@thefnmark}$##1}%
-    % вывод одноколоночного заголовка статьи, включая аннотацию
-%    \twocolumn[%
-        \parbox{\textwidth}{%
-            \begin{center}%
-                \vskip-6ex\vskip\vskipBeforeTitle%
-                %--------- основной заголовок
-                \ifthenelse{\equal{\@title}{}}{}%
-                    {\typeTitle\@title\ifthenelse{\equal{\@thanks@grant}{}}{}{\footnotemark\setcounter{footnote}{0}}\\[1ex]}%
-                \ifthenelse{\equal{\@author@long}{}}{}%
-                    {\typeAuthor\@author@long}%
-                \ifthenelse{\equal{\@email}{}}{}%
-                    {\\{\typeEmail\@email}}%
-                \ifthenelse{\equal{\@organization}{}}{}%
-                    {\\{\typeOrganization\@organization}}%
-                \ifthenelse{\equal{\@abstract}{}}{}%
-                    {\typeAbstract\@abstract\par\vskip\vskipAfterTitle}%
-                \ruseng{{%
-                %--------- второй заголовок на английском для статей на русском
-                \English%
-                \ifthenelse{\equal{\@title@eng}{}}{}%
-                    {\typeTitle\@title@eng\ifthenelse{\equal{\@thanks@grant}{}}{}{\footnotemark\setcounter{footnote}{0}}\\[1ex]}%
-                \ifthenelse{\equal{\@author@long@eng}{}}{}%
-                    {\typeAuthor\@author@long@eng}%
-                \ifthenelse{\equal{\@organization@eng}{}}{}%
-                    {\\{\typeOrganization\@organization@eng}}%
-                \ifthenelse{\equal{\@abstract@eng}{}}{}%
-                    {\typeAbstract\@abstract@eng}%
-                }}{{%
-                %--------- второй заголовок на русском для статей на английском
-                \Russian%
-                \ifthenelse{\equal{\@title@rus}{}}{}%
-                    {\typeTitle\@title@rus\ifthenelse{\equal{\@thanks@grant}{}}{}{\footnotemark}\\[1ex]}%
-                \ifthenelse{\equal{\@author@long@rus}{}}{}%
-                    {\typeAuthor\@author@long@rus}%
-                \ifthenelse{\equal{\@organization@rus}{}}{}%
-                    {\\{\typeOrganization\@organization@rus}}%
-                \ifthenelse{\equal{\@abstract@rus}{}}{}%
-                    {\typeAbstract\@abstract@rus}%
-                }}%
-            \end{center}%
-            \vskip-2ex\vskip\vskipAfterTitle
-        }%
-%    ]%
-    % помещение сноски вниз страницы
-    \ifthenelse{\equal{\@thanks@grant}{}}{}{\footnotetext{\@thanks@grant}}%
-    \setcounter{footnote}{0}%
-    \endgroup
-}
-\def\maketitle{%
-    \@BeginDocument
-    % на предыдущей странице почему-то подавлялся вывод колонтитулов
-    % (видимо, это побочный эффект \twocolumn
-    \pagestyle{headings}%
-    %\clearpage
-    % печать заголовка вместе с аннотацией
-    \type@title
-    \globallabel{\@paper@name:begin}%
-    \pagestyle{headings}%
-    \thispagestyle{headfoot}%
-    % обработать список фамилий авторов, занести каждую в авторский указатель
-    %\newcommand\@trim[1]{\@ifnextchar\ \@gobble\relax#1}%
-    \@for\@indx@elem:=\@author\do{%
-        \index{\@indx@elem}%
+  \noindent
+  \begingroup
+  % РїРѕРґРіРѕС‚РѕРІРєР° Рє РІС‹РІРѕРґСѓ СЃРЅРѕСЃРєРё СЃ РіСЂР°РЅС‚РѕРј
+  \setcounter{footnote}{0}%
+  \def\thefootnote{\fnsymbol{footnote}}%
+  %\def\@makefnmark{\hbox to 0pt{$^{\@thefnmark}$\hss}}%
+  \def\@makefnmark{$^{\@thefnmark}$}%
+  %\long\def\@makefntext##1{\parindent 1em\noindent\hbox to1.8em{\hss $\m@th ^{\@thefnmark}$}##1}%
+  \def\@makefntext##1{
+    \hangindent=1.3ex
+    {\noindent $\m@th ^{\@thefnmark}$##1}
     }%
-    % в чистовом режиме записать в оглавление только авторов и название
-    \addcontentsline{toc}{mmrotitle}{%
+
+  % РІС‹РІРѕРґ РѕРґРЅРѕРєРѕР»РѕРЅРѕС‡РЅРѕРіРѕ Р·Р°РіРѕР»РѕРІРєР° СЃС‚Р°С‚СЊРё, РІРєР»СЋС‡Р°СЏ Р°РЅРЅРѕС‚Р°С†РёСЋ
+  % \twocolumn[%
+  % \parbox{\textwidth}{%
+  \begin{center}%
+    \vskip-6ex\vskip\vskipBeforeTitle%
+    %--------- РѕСЃРЅРѕРІРЅРѕР№ Р·Р°РіРѕР»РѕРІРѕРє
+    \ifthenelse{\equal{\@title}{}}{}%
+               {\typeTitle\@title
+                \ifthenelse{\equal{\@thanks@grant}{}}
+                           {}%\footnotetext{\parbox{\textwidth}{\scriptsize\slshape\paper@record}}
+                           {\footnotemark
+                            \footnotetext{\@thanks@grant}
+                            %\\[2ex]
+                            %\parbox{\textwidth}{\scriptsize\slshape\paper@record}}
+                            \setcounter{footnote}{0}}\\[1ex]
+               }%
+    \ifthenelse{\equal{\@author@long}{}}{}%
+               {\typeAuthor\@author@long}%
+    \ifthenelse{\equal{\@email}{}}{}%
+               {\par{\typeEmail\@email}}%
+    \ifthenelse{\equal{\@organization}{}}{}%
+               {\par{\typeOrganization\@organization}}%
+    \ifthenelse{\equal{\@abstract}{}}{}%
+               {\vskip\vskipBeforeTitle%
+                \ifthenelse{\equal{\@title@eng}{}}
+                           {\typeEngAbstract\@abstract}%
+                           {\typeAbstract\@abstract}%
+               }%
+    \ifthenelse{\equal{\@title@doi}{}}{}%
+               {\par{\typeDOI\@title@doi}%
+                \par\vskip\vskipAfterTitle}%
+    \markboth{\@author@short}{\@title@short}
+    \par\nobreak\@afterheading
+  \end{center}%
+  \vskip-6ex\vskip\vskipAfterTitle
+  %}%
+  % ]%
+  \endgroup
+}
+
+\let\oldlinenumbers\linenumbers
+\def\linenumbers{
+  \oldlinenumbers%
+  \setlength\vskipBeforeSecondaryTitle{-5ex}%
+}
+
+% Р’С‹РІРѕРґ РІС‚РѕСЂРѕРіРѕ Р·Р°РіРѕР»РѕРІРєР°
+\def\type@titleSecondary{%
+  \noindent
+  \begingroup
+  % РїРѕРґРіРѕС‚РѕРІРєР° Рє РІС‹РІРѕРґСѓ СЃРЅРѕСЃРєРё СЃ РіСЂР°РЅС‚РѕРј
+  \setcounter{footnote}{0}%
+  \def\thefootnote{\fnsymbol{footnote}}%
+  \def\@makefntext##1{
+    \hangindent=1.3ex
+    {\noindent $\m@th ^{\@thefnmark}$##1}
+    }%
+
+  % РІС‹РІРѕРґ РѕРґРЅРѕРєРѕР»РѕРЅРѕС‡РЅРѕРіРѕ Р·Р°РіРѕР»РѕРІРєР° СЃС‚Р°С‚СЊРё, РІРєР»СЋС‡Р°СЏ Р°РЅРЅРѕС‚Р°С†РёСЋ
+  \begin{center}%
+    \vskip\vskipBeforeSecondaryTitle%
+    \ruseng{{%
+    %--------- РІС‚РѕСЂРѕР№ Р·Р°РіРѕР»РѕРІРѕРє РЅР° СЂСѓСЃСЃРєРѕРј РґР»СЏ СЃС‚Р°С‚РµР№ РЅР° СЂСѓСЃСЃРєРѕРј
+    \English%
+    \ifthenelse{\equal{\@title@eng}{}}
+               {\markboth{\@author@short@eng}{\@title@short@eng}}%
+               {\typeTitle{\@title@eng}%
+                \ifthenelse{\equal{\@thanks@grant@eng}{}}
+                           {\markboth{\@author@short@eng}{\@title@short@eng}}%
+                           {\footnotemark
+                            \footnotetext{\@thanks@grant@eng}
+                            \markboth{\@author@short@eng}{\@title@short@eng}
+                           }\par\nobreak\vspace{1ex}\@afterheading
+               }%
+    \ifthenelse{\equal{\@author@long@eng}{}}{}%
+               {\typeAuthor\@author@long@eng}%
+    \nopagebreak
+    \ifthenelse{\equal{\@email}{}}{}%
+               {\par{\typeEmail\@email}}%
+    \nopagebreak
+    \ifthenelse{\equal{\@organization@eng}{}}{}%
+               {\par{\typeOrganization\@organization@eng}}%
+    \ifthenelse{\equal{\@abstract@eng}{}}{}%
+               {\typeEngAbstract\@abstract@eng}%
+    \ifthenelse{\equal{\@title@doi}{}}{}%
+               {\par{\typeDOI\@title@doi}}%
+    }}
+    {{%
+    %--------- РІС‚РѕСЂРѕР№ Р·Р°РіРѕР»РѕРІРѕРє РЅР° СЂСѓСЃСЃРєРѕРј РґР»СЏ СЃС‚Р°С‚РµР№ РЅР° Р°РЅРіР»РёР№СЃРєРѕРј
+    \Russian%
+    \ifthenelse{\equal{\@title@rus}{}}
+               {\markboth{\@author@short@rus}{\@title@short@rus}}%
+               {\typeTitle{\@title@rus}%
+                \ifthenelse{\equal{\@thanks@grant@rus}{}}
+                           {\markboth{\@author@short@rus}{\@title@short@rus}}%
+                           {\footnotemark
+                            \footnotetext{\@thanks@grant@rus}
+                            \markboth{\@author@short@rus}{\@title@short@rus}
+                           }\par\nobreak\vspace{1ex}\@afterheading
+               }%
+    \ifthenelse{\equal{\@author@long@rus}{}}{}%
+               {\typeAuthor\@author@long@rus}%
+    \nopagebreak
+    \ifthenelse{\equal{\@email}{}}{}%
+               {\par{\typeEmail\@email}}%
+    \nopagebreak
+    \ifthenelse{\equal{\@organization@rus}{}}{}%
+               {\par{\typeOrganization\@organization@rus}}%
+    \ifthenelse{\equal{\@abstract@rus}{}}{}%
+               {\typeAbstract\@abstract@rus}%
+    \ifthenelse{\equal{\@title@doi}{}}{}%
+               {\par{\typeDOI\@title@doi}}%
+    }}%
+  \end{center}%
+  \vskip-4ex\vskip\vskipAfterTitle
+  \endgroup
+}
+
+\def\maketitle{%
+  \@BeginDocument
+  \clearpage
+
+  % РѕР±СЂР°Р±РѕС‚Р°С‚СЊ СЃРїРёСЃРѕРє С„Р°РјРёР»РёР№ Р°РІС‚РѕСЂРѕРІ, Р·Р°РЅРµСЃС‚Рё РєР°Р¶РґСѓСЋ РІ Р°РІС‚РѕСЂСЃРєРёР№ СѓРєР°Р·Р°С‚РµР»СЊ
+  %\newcommand\@trim[1]{\@ifnextchar\ \@gobble\relax#1}%
+  \@for\@indx@elem:=\@author\do{%
+      \index{\@indx@elem}%
+  }%
+  % РІ С‡РёСЃС‚РѕРІРѕРј СЂРµР¶РёРјРµ Р·Р°РїРёСЃР°С‚СЊ РІ РѕРіР»Р°РІР»РµРЅРёРµ С‚РѕР»СЊРєРѕ Р°РІС‚РѕСЂРѕРІ Рё РЅР°Р·РІР°РЅРёРµ
+  \ifthenelse{\equal{\@title@eng}{}}{
+    \addcontentsline{tos}{mmrotitle}{%
+        \typeTocAuthorTitle{\@author@rus}{\@title@rus}%
+    }%
+    \addcontentsline{tes}{mmrotitle}{%
         \typeTocAuthorTitle{\@author}{\@title}%
     }%
-    % в черновом режиме дописать в оглавление:
-    % организацию, абстракт, имя файла, имена рецензентов, отметки о прохождении корректуры и рецензирования
-    \ifdraft{\Russian
-        \addtocontents{toc}{\protect\par(\@organization)}%
-        \addtocontents{toc}{\protect\par\@abstract}%
-        \ifthenelse{\equal{\@paper@corrected}{+}}%
-            {\addtocontents{toc}{\protect\par\protect\nopagebreak$\bigstar$\quad
-                \textsl{Статья прошла корректуру}}}%
-            {}%
-        \ifthenelse{\equal{\@paper@reviewed}{+}}%
-            {\addtocontents{toc}{\protect\par\protect\nopagebreak$\bigstar\bigstar$\quad
-                \textsl{Статья прошла рецензирование}}}%
-            {}%
-        \ifthenelse{\equal{\@paper@accepted}{0}}%
-            {\addtocontents{toc}{\protect\par\protect\nopagebreak ???\quad
-                \textsl{Решение по данной статье пока не принято}}}%
-            {}%
-        \ifthenelse{\equal{\@paper@accepted}{+}}%
-            {\addtocontents{toc}{\protect\par\protect\nopagebreak$\bigstar\bigstar\bigstar$\quad
-                \textsl{Статья принята в печать}}}%
-            {}%
-        \ifthenelse{\equal{\@paper@accepted}{?}}%
-            {\addtocontents{toc}{\protect\par\protect\nopagebreak$\maltese$\quad
-                \textbf{Статью желательно доработать}}}%
-            {}%
-        \ifthenelse{\equal{\@paper@accepted}{!}}%
-            {\addtocontents{toc}{\protect\par\protect\nopagebreak$\maltese\maltese$\quad
-                \textbf{Статья не может быть принята без доработки}}}%
-            {}%
-        \ifthenelse{\equal{\@paper@accepted}{-}}%
-            {\addtocontents{toc}{\protect\par\protect\nopagebreak$\maltese\maltese\maltese$\quad
-                \textbf{Статья отвергнута}}}%
-            {}%
-        \addtocontents{toc}{%
-            \protect\par\protect\url{\@paper@name.TeX}%
-            \protect\ifthenelse{\protect\equal{\@reviewers@list}{}}%
-                {}%
-                {\quad(рецензенты и корректоры: \texttt{\@reviewers@list})%
-            }%
-        }%
-    }\fi
-    % сформировать колонтитулы
-    \markboth{\@author@short}{\@title@short}%
-    \par\nobreak\@afterheading
-    % балансировка колонок -- только в конце статьи
-    \nobalance
+  }{%
+    \addcontentsline{tos}{mmrotitle}{%
+        \typeTocAuthorTitle{\@author}{\@title}%
+    }%
+    \addcontentsline{tes}{mmrotitle}{%
+        \typeTocAuthorTitle{\@author@eng}{\@title@eng}%
+    }%
+  }%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  \pagestyle{headfoot}%
+  % РїРµС‡Р°С‚СЊ Р·Р°РіРѕР»РѕРІРєР° РІРјРµСЃС‚Рµ СЃ Р°РЅРЅРѕС‚Р°С†РёРµР№
+  \type@title
+
+  \globallabel{\@paper@name:begin}%
+
+  % РІ С‡РµСЂРЅРѕРІРѕРј СЂРµР¶РёРјРµ РґРѕРїРёСЃР°С‚СЊ РІ РѕРіР»Р°РІР»РµРЅРёРµ:
+  % РѕСЂРіР°РЅРёР·Р°С†РёСЋ, Р°Р±СЃС‚СЂР°РєС‚, РёРјСЏ С„Р°Р№Р»Р°, РёРјРµРЅР° СЂРµС†РµРЅР·РµРЅС‚РѕРІ, РѕС‚РјРµС‚РєРё Рѕ РїСЂРѕС…РѕР¶РґРµРЅРёРё РєРѕСЂСЂРµРєС‚СѓСЂС‹ Рё СЂРµС†РµРЅР·РёСЂРѕРІР°РЅРёСЏ
+  \ifdraft{\Russian
+    \addtocontents{toc}{\protect\par(\@organization)}%
+    \addtocontents{toc}{\protect\par\@abstract}%
+    \ifthenelse{\equal{\@paper@corrected}{+}}%
+      {\addtocontents{toc}{\protect\par\protect\nopagebreak$\bigstar$\quad
+          \textsl{РЎС‚Р°С‚СЊСЏ РїСЂРѕС€Р»Р° РєРѕСЂСЂРµРєС‚СѓСЂСѓ}}}%
+      {}%
+    \ifthenelse{\equal{\@paper@reviewed}{+}}%
+      {\addtocontents{toc}{\protect\par\protect\nopagebreak$\bigstar\bigstar$\quad
+          \textsl{РЎС‚Р°С‚СЊСЏ РїСЂРѕС€Р»Р° СЂРµС†РµРЅР·РёСЂРѕРІР°РЅРёРµ}}}%
+      {}%
+    \ifthenelse{\equal{\@paper@accepted}{0}}%
+      {\addtocontents{toc}{\protect\par\protect\nopagebreak ???\quad
+          \textsl{Р РµС€РµРЅРёРµ РїРѕ РґР°РЅРЅРѕР№ СЃС‚Р°С‚СЊРµ РїРѕРєР° РЅРµ РїСЂРёРЅСЏС‚Рѕ}}}%
+      {}%
+    \ifthenelse{\equal{\@paper@accepted}{+}}%
+      {\addtocontents{toc}{\protect\par\protect\nopagebreak$\bigstar\bigstar\bigstar$\quad
+          \textsl{РЎС‚Р°С‚СЊСЏ РїСЂРёРЅСЏС‚Р° РІ РїРµС‡Р°С‚СЊ}}}%
+      {}%
+    \ifthenelse{\equal{\@paper@accepted}{?}}%
+      {\addtocontents{toc}{\protect\par\protect\nopagebreak$\maltese$\quad
+          \textbf{РЎС‚Р°С‚СЊСЋ Р¶РµР»Р°С‚РµР»СЊРЅРѕ РґРѕСЂР°Р±РѕС‚Р°С‚СЊ}}}%
+      {}%
+    \ifthenelse{\equal{\@paper@accepted}{!}}%
+      {\addtocontents{toc}{\protect\par\protect\nopagebreak$\maltese\maltese$\quad
+          \textbf{РЎС‚Р°С‚СЊСЏ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСЂРёРЅСЏС‚Р° Р±РµР· РґРѕСЂР°Р±РѕС‚РєРё}}}%
+      {}%
+    \ifthenelse{\equal{\@paper@accepted}{-}}%
+      {\addtocontents{toc}{\protect\par\protect\nopagebreak$\maltese\maltese\maltese$\quad
+          \textbf{РЎС‚Р°С‚СЊСЏ РѕС‚РІРµСЂРіРЅСѓС‚Р°}}}%
+      {}%
+    \addtocontents{toc}{%
+      \protect\par\protect\url{\@paper@name.TeX}%
+      \protect\ifthenelse{\protect\equal{\@reviewers@list}{}}%
+        {}%
+        {\quad(СЂРµС†РµРЅР·РµРЅС‚С‹ Рё РєРѕСЂСЂРµРєС‚РѕСЂС‹: \texttt{\@reviewers@list})%
+      }%
+    }%
+  }\fi
+
+  % Р±Р°Р»Р°РЅСЃРёСЂРѕРІРєР° РєРѕР»РѕРЅРѕРє -- С‚РѕР»СЊРєРѕ РІ РєРѕРЅС†Рµ СЃС‚Р°С‚СЊРё
+  \nobalance
 }
+
+
+\def\maketitleSecondary{%
+  \type@titleSecondary
+
+  % Р±Р°Р»Р°РЅСЃРёСЂРѕРІРєР° РєРѕР»РѕРЅРѕРє -- С‚РѕР»СЊРєРѕ РІ РєРѕРЅС†Рµ СЃС‚Р°С‚СЊРё
+  \nobalance
+}
+
 \def\@clear@title{%
-    \gdef\@title{}%
-    \gdef\@title@short{}%
-    \gdef\@author{}%
-    \gdef\@author@short{}%
-    \gdef\@author@long{}%
-    \gdef\@organization{}%
-    \gdef\@abstract{}%
-    \gdef\@thanks@grant{}%
-    \gdef\@email{}%
-    %--------- второй заголовок на английском для статей на русском
-    \gdef\@title@eng{}%
-    \gdef\@title@short@eng{}%
-    \gdef\@author@eng{}%
-    \gdef\@author@short@eng{}%
-    \gdef\@author@long@eng{}%
-    \gdef\@organization@eng{}%
-    \gdef\@abstract@eng{}%
-    %--------- второй заголовок на русском для статей на английском
-    \gdef\@title@rus{}%
-    \gdef\@title@short@rus{}%
-    \gdef\@author@rus{}%
-    \gdef\@author@short@rus{}%
-    \gdef\@author@long@rus{}%
-    \gdef\@organization@rus{}%
-    \gdef\@abstract@rus{}%
+  \gdef\@title{}%
+  \gdef\@title@short{}%
+  \gdef\@author{}%
+  \gdef\@author@short{}%
+  \gdef\@author@long{}%
+  \gdef\@organization{}%
+  \gdef\@abstract{}%
+  \gdef\@thanks@grant{}%
+  \gdef\@email{}%
+  \gdef\@title@doi{}%
+  \gdef\@received@eng{}%
+  \gdef\@received@rus{}%
+  %--------- РІС‚РѕСЂРѕР№ Р·Р°РіРѕР»РѕРІРѕРє РЅР° Р°РЅРіР»РёР№СЃРєРѕРј РґР»СЏ СЃС‚Р°С‚РµР№ РЅР° СЂСѓСЃСЃРєРѕРј
+  \gdef\@title@eng{}%
+  \gdef\@title@short@eng{}%
+  \gdef\@author@eng{}%
+  \gdef\@author@short@eng{}%
+  \gdef\@author@long@eng{}%
+  \gdef\@organization@eng{}%
+  \gdef\@abstract@eng{}%
+  \gdef\@thanks@grant@eng{}%
+  %--------- РІС‚РѕСЂРѕР№ Р·Р°РіРѕР»РѕРІРѕРє РЅР° СЂСѓСЃСЃРєРѕРј РґР»СЏ СЃС‚Р°С‚РµР№ РЅР° Р°РЅРіР»РёР№СЃРєРѕРј
+  \gdef\@title@rus{}%
+  \gdef\@title@short@rus{}%
+  \gdef\@author@rus{}%
+  \gdef\@author@short@rus{}%
+  \gdef\@author@long@rus{}%
+  \gdef\@organization@rus{}%
+  \gdef\@abstract@rus{}%
+  \gdef\@thanks@grant@rus{}%
 }
 \renewcommand{\title}[2][]{\@clear@title
-    \gdef\@title{#2}%    {\uppercase{#2}}
-    \ifthenelse{\equal{#1}{}}%
-        {\gdef\@title@short{{#2}}}%
-        {\gdef\@title@short{{#1}}}%
+  \gdef\@title{#2}%    {\uppercase{#2}}
+  \ifthenelse{\equal{#1}{}}%
+    {\gdef\@title@short{{#2}}}%
+    {\gdef\@title@short{{#1}}}%
 }
 \renewcommand{\author}[2][]{
-    \gdef\@author{#2}
-    \ifthenelse{\equal{#1}{}}%
-        {\gdef\@author@short{{#2}}}%
-        {\gdef\@author@short{{#1 и~др.}}}%
-    \gdef\@author@long{#2}%
-    \@ifnextchar[\set@author@long\relax
+  \gdef\@author{#2}
+  \ifthenelse{\equal{#1}{}}%
+    {\gdef\@author@short{{#2}}}%
+    {\gdef\@author@short{{\ruseng{#1 Рё~РґСЂ.}{#1 et~al.}}}}%
+  \gdef\@author@long{#2}%
+  \@ifnextchar[\set@author@long\relax
 }
 \def\set@author@long[#1]{\gdef\@author@long{#1}}
 \newcommand{\organization}[1]{\gdef\@organization{{#1}}}
 \newcommand{\email}[1]{\gdef\@email{{#1}}}
 \renewcommand{\thanks}[1]{\gdef\@thanks@grant{{#1}}}
-%\def\myuncat{\def\do##1{\catcode`##1=12}\dospecials}
 \renewcommand{\abstract}[1]{\gdef\@abstract{{#1}}}
 
-% То же самое для второго заголовка на английском
+\newcommand{\doi}[1]{\gdef\@title@doi{{#1}}}
+\newcommand{\receivedRus}[1]{\gdef\@received@rus{{#1}}}
+\newcommand{\receivedEng}[1]{\gdef\@received@eng{{#1}}}
+
+% РўРѕ Р¶Рµ СЃР°РјРѕРµ РґР»СЏ РІС‚РѕСЂРѕРіРѕ Р·Р°РіРѕР»РѕРІРєР° РЅР° Р°РЅРіР»РёР№СЃРєРѕРј
 \newcommand{\titleEng}[2][]{%
-    \gdef\@title@eng{#2}%    {\uppercase{#2}}
-    \ifthenelse{\equal{#1}{}}%
-        {\gdef\@title@short@eng{{#2}}}%
-        {\gdef\@title@short@eng{{#1}}}%
+  \gdef\@title@eng{#2}%    {\uppercase{#2}}
+  \ifthenelse{\equal{#1}{}}%
+    {\gdef\@title@short@eng{{#2}}}%
+    {\gdef\@title@short@eng{{#1}}}%
 }
 \newcommand{\authorEng}[2][]{
-    \gdef\@author@eng{#2}
-    \ifthenelse{\equal{#1}{}}%
-        {\gdef\@author@short@eng{{#2}}}%
-        {\gdef\@author@short@eng{{#1 и~др.}}}%
-    \gdef\@author@long@eng{#2}%
-    \@ifnextchar[\set@author@long@eng\relax
+  \gdef\@author@eng{#2}
+  \ifthenelse{\equal{#1}{}}%
+    {\gdef\@author@short@eng{{#2}}}%
+    {\gdef\@author@short@eng{{#1 et~al.}}}%
+  \gdef\@author@long@eng{#2}%
+  \@ifnextchar[\set@author@long@eng\relax
 }
 \def\set@author@long@eng[#1]{\gdef\@author@long@eng{#1}}
 \newcommand{\organizationEng}[1]{\gdef\@organization@eng{{#1}}}
 \newcommand{\abstractEng}[1]{\gdef\@abstract@eng{{#1}}}
+\newcommand{\thanksEng}[1]{\gdef\@thanks@grant@eng{{#1}}}
 
-% То же самое для второго заголовка на русском
+% РўРѕ Р¶Рµ СЃР°РјРѕРµ РґР»СЏ РІС‚РѕСЂРѕРіРѕ Р·Р°РіРѕР»РѕРІРєР° РЅР° СЂСѓСЃСЃРєРѕРј
 \newcommand{\titleRus}[2][]{%
-    \gdef\@title@rus{#2}%    {\uppercase{#2}}
-    \ifthenelse{\equal{#1}{}}%
-        {\gdef\@title@short@rus{{#2}}}%
-        {\gdef\@title@short@rus{{#1}}}%
+  \gdef\@title@rus{#2}%    {\uppercase{#2}}
+  \ifthenelse{\equal{#1}{}}%
+    {\gdef\@title@short@rus{{#2}}}%
+    {\gdef\@title@short@rus{{#1}}}%
 }
 \newcommand{\authorRus}[2][]{
-    \gdef\@author@rus{#2}
-    \ifthenelse{\equal{#1}{}}%
-        {\gdef\@author@short@rus{{#2}}}%
-        {\gdef\@author@short@rus{{#1 и~др.}}}%
-    \gdef\@author@long@rus{#2}%
-    \@ifnextchar[\set@author@long@rus\relax
+  \gdef\@author@rus{#2}
+  \ifthenelse{\equal{#1}{}}%
+    {\gdef\@author@short@rus{{#2}}}%
+    {\gdef\@author@short@rus{{#1 Рё~РґСЂ.}}}%
+  \gdef\@author@long@rus{#2}%
+  \@ifnextchar[\set@author@long@rus\relax
 }
 \def\set@author@long@rus[#1]{\gdef\@author@long@rus{#1}}
 \newcommand{\organizationRus}[1]{\gdef\@organization@rus{{#1}}}
 \newcommand{\abstractRus}[1]{\gdef\@abstract@rus{{#1}}}
+\newcommand{\thanksRus}[1]{\gdef\@thanks@grant@rus{{#1}}}
 
-% Библиографическая запись текущей статьи
-\def\paper@record{{%
-    %\textit{\@author} \@title~//
-    \Russian
-    Машинное обучение и анализ данных, 2014. Т.\,1, \No\,8.\\
-    \English
-    %Machine Learning and Data Analysis, 2014. Vol.\,1\,(8).
-    }%
-    %М.:~МАКС Пресс, 2009~---
-    %С.\,\globalpageref{\@paper@name:begin}--\globalpageref{\@paper@name:end}.
+% Р‘РёР±Р»РёРѕРіСЂР°С„РёС‡РµСЃРєР°СЏ Р·Р°РїРёСЃСЊ С‚РµРєСѓС‰РµР№ СЃС‚Р°С‚СЊРё
+\def\paper@record{
+ %\ruseng{РњР°С€РёРЅРЅРѕРµ РѕР±СѓС‡РµРЅРёРµ Рё Р°РЅР°Р»РёР· РґР°РЅРЅС‹С…, 2017. РўРѕРј\,??, \No\,??.}%\\
+ %       {Machine Learning and Data Analysis, 2017. Volume\,??.\,Issue ??. }
 }
 
-% Оформление аннотации
-%\renewenvironment{abstract}{\begin{strip}}{\end{strip}}
-%\renewenvironment{abstract}{\par\begingroup\small}{\endgroup\par\medskip}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Переопределение колонтитулов
+% РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РєРѕР»РѕРЅС‚РёС‚СѓР»РѕРІ
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand\type@chapter@code{%
-    \ifthenelse{\equal{\@chapter@code}{}}{}{\typeChapterCode{\@chapter@code}}
+  \ifthenelse{\equal{\@chapter@code}{}}{}{\typeChapterCode{\@chapter@code}}
 }
-\renewcommand{\ps@headings}{%
-    \renewcommand{\@oddhead}{\parbox{\textwidth}{\footnotesize
-        \rightmark\hfill\type@chapter@code\quad\thepage\\[-2ex]\hrule}}%
-    \renewcommand{\@evenhead}{\parbox{\textwidth}{\footnotesize
-        \thepage\quad\type@chapter@code\hfill\leftmark\\[-2ex]\hrule}}%
-    \renewcommand{\@oddfoot}{}%
-    \renewcommand{\@evenfoot}{}%
+
+\fancypagestyle{headings}{%
+  \fancyhf{}% Clear header/footer
+  \fancyhead[OC]{\parbox{\textwidth}{\footnotesize
+        \rightmark\hfill\type@chapter@code\quad\thepage\\[-2ex]}}% Title will be on Odd page
+  \fancyhead[EC]{\parbox{\textwidth}{\footnotesize
+        \thepage\quad\type@chapter@code\hfill\leftmark\\[-2ex]}}% Author will be on Even page
+  \fancyfoot[C]{}%
+  \renewcommand{\headrulewidth}{.4pt}% Header rule of .4pt
 }
-\newcommand{\ps@headfoot}{%
-    \renewcommand{\@oddhead}{\parbox{\textwidth}{\footnotesize
-        \rightmark\hfill\type@chapter@code\quad\thepage\\[-2ex]\hrule}}%
-    \renewcommand{\@evenhead}{\parbox{\textwidth}{\footnotesize
-        \thepage\quad\type@chapter@code\hfill\leftmark\\[-2ex]\hrule}}%
-    \renewcommand{\@oddfoot}{\parbox{\textwidth}{\scriptsize\slshape\paper@record}}%\hrule\vskip1ex
-    \renewcommand{\@evenfoot}{\@oddfoot}%
+
+%\leftmark\hfill\type@chapter@code\quad\thepage\\[-2ex]
+\fancypagestyle{headfoot}{%
+  \fancyhf{}% Clear header/footer
+  \fancyhead[OC]{\parbox{\textwidth}{\footnotesize
+        \rightmark\hfill\type@chapter@code\quad\thepage\\[-2ex]}}% Title will be on Odd page
+  \fancyhead[EC]{\parbox{\textwidth}{\footnotesize
+        \thepage\quad\type@chapter@code\hfill\leftmark\\[-2ex]}}% Author will be on Even page
+  \fancyfoot[C]{\parbox{\textwidth}{\scriptsize\slshape\paper@record}}%
+  \renewcommand{\headrulewidth}{0.4pt}% Header rule of .4pt
 }
-\pagestyle{empty}
+
+\pagestyle{plain}
+
+% СЃС‚Р°СЂРѕРµ
+%\renewcommand{\ps@headings}{%
+%  \renewcommand{\@oddhead}{\parbox{\textwidth}{\footnotesize
+%      \rightmark\hfill\type@chapter@code\quad\thepage\\[-2ex]\hrule}}%
+%  \renewcommand{\@evenhead}{\parbox{\textwidth}{\footnotesize
+%      \thepage\quad\type@chapter@code\hfill\leftmark\\[-2ex]\hrule}}%
+%  %\renewcommand{\@oddfoot}{\parbox{\textwidth}{\scriptsize\slshape\paper@record}}
+%  \renewcommand{\@oddfoot}{}%
+%  \renewcommand{\@evenfoot}{}%
+%}
+%\newcommand{\ps@headfoot}{%
+%    \renewcommand{\@oddhead}{\parbox{\textwidth}{\footnotesize
+%        \rightmark\hfill\type@chapter@code\quad\thepage\\[-2ex]\hrule}}%
+%    \renewcommand{\@evenhead}{\parbox{\textwidth}{\footnotesize
+%        \thepage\quad\type@chapter@code\hfill\leftmark\\[-2ex]\hrule}}%
+%    \renewcommand{\@oddfoot}{\parbox{\textwidth}{\scriptsize\slshape\paper@record}}
+%    %\renewcommand{\@oddfoot}{}%
+%    \renewcommand{\@evenfoot}{\@oddfoot}%
+%}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Оформление разделов
+% РћС„РѕСЂРјР»РµРЅРёРµ СЂР°Р·РґРµР»РѕРІ
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Настройка разделов
+\gdef\reallynopagebreak{\par\nopagebreak\@nobreaktrue}
+
+% РќР°СЃС‚СЂРѕР№РєР° СЂР°Р·РґРµР»РѕРІ
 % INTERFACE
+\newcounter{sectionCounter}
+\newcounter{paragraphCounter}[sectionCounter]
+
 \newcommand\typeSection[1]{%
-    \medskip
-    \hangindent=3.5ex
-    \hangafter=-6\noindent
-    {\large\sffamily\bfseries #1}%
-    \par\nobreak\smallskip
+  \bigskip
+  \stepcounter{sectionCounter}
+  \noindent
+  {\large\sffamily\bfseries
+   \arabic{sectionCounter}~~
+      {\begin{minipage}[t]{\dimexpr\linewidth - 3ex}
+       \nohyphens{#1}
+       \end{minipage}}
+      }%
+  \reallynopagebreak\smallskip
 }
 % INTERFACE
 \newcommand\typeParagraph[1]{%
-    \smallskip{\normalfont\rmfamily\bfseries #1 }%
+  \stepcounter{paragraphCounter}
+  \medskip
+  \noindent
+  {\normalfont\rmfamily\bfseries
+   \arabic{sectionCounter}.\arabic{paragraphCounter}~~
+      {\begin{minipage}[t]{\dimexpr\linewidth - 6ex}
+       \nohyphens{{#1}}
+       \end{minipage}}
+      }%
+  \reallynopagebreak\smallskip
 }
+
+\newcommand\typeBibliographySection[1]{%
+  \bigskip
+    %\hangindent=0ex
+    %\hangafter=-6
+    \noindent
+    {\large\sffamily\bfseries #1}%
+    \reallynopagebreak\smallskip
+}
+
+
+
 % INTERFACE
 \newcommand\typeChapter[3]{%
-    \hrule\vskip1pt\hrule height2pt\vskip4ex\noindent
-    {\normalfont\LARGE\sffamily\bfseries #3\raggedright\par}
-    \vskip2ex\hrule height2pt\vskip1pt\hrule\vskip-1ex
-    {\footnotesize\flushright\Russian Код раздела: #1 (#2)\par}
-    \vskip6ex
+  \hrule\vskip1pt\hrule height2pt\vskip4ex\noindent
+  {\normalfont\LARGE\sffamily\bfseries #3\raggedright\par}
+  \vskip2ex\hrule height2pt\vskip1pt\hrule\vskip-1ex
+  {\footnotesize\flushright\Russian РљРѕРґ СЂР°Р·РґРµР»Р°: #1 (#2)\par}
+  \vskip6ex
 }
+
+
 % INTERFACE
-\newcommand\typeChapterCode[1]{ }
+%%%%%%%% Р°Р±Р±СЂРµРІРёР°С‚СѓСЂР° Р¶СѓСЂРЅР°Р»Р° СѓРґР°Р»РµРЅР° РёР· РІРµСЂС…РЅРµРіРѕ РєРѕР»РѕРЅС‚РёС‚СѓР»Р°
+%\newcommand\typeChapterCode[1]{({\tiny\Russian JMLDA})}
+\newcommand\typeChapterCode[1]{}
+%%%%%%%%
 
-% Разделы
+
+
+% Р Р°Р·РґРµР»С‹
+%\newcounter{sectionCounter}[1]
 \renewcommand\section[1]{\par\typeSection{#1}\@afterheading}
-\renewcommand\subsection[1]{\par\typeSection{#1}\@afterheading}
-\renewcommand\subsubsection[1]{\par\typeSection{#1}\@afterheading}
-\renewcommand\paragraph[1]{\par\typeParagraph{#1}\nobreak}
-\renewcommand\subparagraph[1]{\par\typeParagraph{#1}\nobreak}
+\providecommand\bibsection[1]{\par\typeBibliographySection{#1}\@afterheading}
 
-% Начало новой главы
+\renewcommand\subsection[1]{\par\typeParagraph{#1}\@afterheading}
+\renewcommand\subsubsection[1]{\par\typeParagraph{#1}\@afterheading}
+\renewcommand\paragraph[1]{\par\typeParagraph{#1}\@afterheading}
+\renewcommand\subparagraph[1]{\par\typeParagraph{#1}\@afterheading}
+
+% РќР°С‡Р°Р»Рѕ РЅРѕРІРѕР№ РіР»Р°РІС‹
 \def\newchapterpage{%
-    \pagestyle{headings}
-    \onecolumn
-%%%    \ifthenelse{\isodd{\thepage}}%s
-%%%        {\newpage~\thispagestyle{empty}\newpage}    % \renewcommand{\@evenhead}{}
-%%%        {\newpage}%
+%    \ifthenelse{\isodd{\thepage}}%s
+%        {\newpage~\thispagestyle{empty}\newpage}    % \renewcommand{\@evenhead}{}
+%        {\newpage}%
 %    \ifthenelse{\isodd{\thepage}}%s
 %        {~\thispagestyle{empty}\newpage}    % \renewcommand{\@evenhead}{}
 %        {}%
-    \thispagestyle{empty}%
+  \pagestyle{headfoot}
+  \onecolumn
 }
+
 \def\chaptercode#1{\gdef\@chapter@code{#1}}
 \chaptercode{??}
-% INTERFACE
-\def\chapter#1#2#3{%
-    \newchapterpage
-    %\typeChapter{#1}{#2}{#3}
-    \addcontentsline{toc}{mmrochapter}{{\normalfont\sffamily\bfseries #3}}% \protect\chaptercode{#1}
-    \addtocontents{toc}{\protect\nopagebreak}%
-    \addcontentsline{tos}{mmrochapter}{\rlap{(#1)}\hspace{12mm}#2\protect\\\strut\hspace{7.3mm}#3}% для краткого оглавления
-    \markboth{#3}{#3}%
-    \chaptercode{#1}%
-}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Оформление оглавления
+% РћС„РѕСЂРјР»РµРЅРёРµ РѕРіР»Р°РІР»РµРЅРёСЏ
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\renewcommand\contentsname{Содержание}
-
-% вёрстка одного пункта оглавления
+% РІС‘СЂСЃС‚РєР° РѕРґРЅРѕРіРѕ РїСѓРЅРєС‚Р° РѕРіР»Р°РІР»РµРЅРёСЏ
 \newcommand\l@mmrotitle{\smallskip\@dottedtocline{1}{0ex}{3ex}}
-\newcommand\l@mmrochapter{\vskip3ex\@dottedtocline{0}{0ex}{3ex}}
 
-% переопределение команды генерации оглавления
+% РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РєРѕРјР°РЅРґС‹ РіРµРЅРµСЂР°С†РёРё РѕРіР»Р°РІР»РµРЅРёСЏ
 \renewcommand\tableofcontents{%
-    \if@twocolumn\@restonecoltrue\onecolumn\else\@restonecolfalse\fi
-    \par{\normalfont\Large\sffamily\bfseries\contentsname}\nopagebreak\par\bigskip
-    \def\@chapter@code{}%
-    \markboth{\contentsname}{\contentsname}%
-    \@starttoc{toc}%
-    \if@restonecol\twocolumn\fi
+  \renewcommand\contentsname{\ruseng{РЎРѕРґРµСЂР¶Р°РЅРёРµ}{Contents}}
+
+  \if@twocolumn\@restonecoltrue\onecolumn\else\@restonecolfalse\fi
+  \Russian
+  \par{\normalfont\Large\sffamily\bfseries\contentsname}\nopagebreak\par\bigskip
+  %\def\@chapter@code{}%
+  %\markboth{\contentsname}{\contentsname}%
+  \@starttoc{tos}%
+  \if@restonecol\twocolumn\fi
+  \clearpage
+  \English
+  \if@twocolumn\@restonecoltrue\onecolumn\else\@restonecolfalse\fi
+  \par{\normalfont\Large\sffamily\bfseries\contentsname}\nopagebreak\par\bigskip
+  %\def\@chapter@code{}%
+  %\markboth{\contentsname}{\contentsname}%
+  \@starttoc{tes}
+  \if@restonecol\twocolumn\fi
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Оформление алфавитного указателя авторов
+% РћС„РѕСЂРјР»РµРЅРёРµ Р°Р»С„Р°РІРёС‚РЅРѕРіРѕ СѓРєР°Р·Р°С‚РµР»СЏ Р°РІС‚РѕСЂРѕРІ
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \renewenvironment{theindex}{%
-    \if@twocolumn\@restonecolfalse\else\@restonecoltrue\fi
-    \columnseprule \z@
-    \columnsep 35\p@
-    \twocolumn[{\normalfont\Large\sffamily\bfseries Авторский указатель}\vskip2em]%
-    \markboth{Авторский указатель}{Авторский указатель}%
-    \parindent\z@
-    \parskip\z@ \@plus .3\p@\relax
-    \flushright
-    \let\item\@idxitem
+  \if@twocolumn\@restonecolfalse\else\@restonecoltrue\fi
+  \columnseprule \z@
+  \columnsep 35\p@
+  \twocolumn[{\normalfont\Large\sffamily\bfseries РђРІС‚РѕСЂСЃРєРёР№ СѓРєР°Р·Р°С‚РµР»СЊ}\vskip2em]%
+  \markboth{РђРІС‚РѕСЂСЃРєРёР№ СѓРєР°Р·Р°С‚РµР»СЊ}{РђРІС‚РѕСЂСЃРєРёР№ СѓРєР°Р·Р°С‚РµР»СЊ}%
+  \parindent\z@
+  \parskip\z@ \@plus .3\p@\relax
+  \flushright
+  \let\item\@idxitem
 }{%
-    \if@restonecol\onecolumn\else\clearpage\fi
+  \if@restonecol\onecolumn\else\clearpage\fi
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Оформление библиографии, в каждой статье отдельно
+% РћС„РѕСЂРјР»РµРЅРёРµ Р±РёР±Р»РёРѕРіСЂР°С„РёРё, РІ РєР°Р¶РґРѕР№ СЃС‚Р°С‚СЊРµ РѕС‚РґРµР»СЊРЅРѕ
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Оформление элементов пункта библиографии
+% РћС„РѕСЂРјР»РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РїСѓРЅРєС‚Р° Р±РёР±Р»РёРѕРіСЂР°С„РёРё
 % INTERFACE
-%\def\BibUrl#1{\\{\footnotesize\url{http://#1}}}
-\def\BibAuthor#1{\emph{#1}}
-\def\BibTitle#1{{#1}}
-%\def\BibTitle#1{}  % Возможно, названия потом уберут везде
-\def\BibJournal#1{\emph{#1}}
+
+\def\BibAuthor#1{\ruseng{\textit{#1}}{\textrm{#1}}}
+\def\BibTitle#1{\ruseng{\textrm{#1}}{\textsl{#1}}}
+\def\BibJournal#1{\ruseng{\textrm{#1}}{\textsl{#1}}}
+
 \def\BibUrl#1{{\small\url{#1}}}
 \def\BibHttp#1{{\small\url{http://#1}}}
 \def\BibFtp#1{{\small\url{ftp://#1}}}
+\def\BibDoi#1{doi:~{\small\url{http://dx.doi.org/#1}}}
 \def\typeBibItem{\small\sloppy}
 
-% Переопределение горизонтальных и вертикальных промежутков в списке литературы
+% РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅС‹С… Рё РІРµСЂС‚РёРєР°Р»СЊРЅС‹С… РїСЂРѕРјРµР¶СѓС‚РєРѕРІ РІ СЃРїРёСЃРєРµ Р»РёС‚РµСЂР°С‚СѓСЂС‹
 \renewenvironment{thebibliography}[1]
-    {\section{\bibname}%
-        \list{\@biblabel{\@arabic\c@enumiv}}{%
-            \settowidth\labelwidth{\@biblabel{#1}}%
-            \leftmargin\labelwidth
-            \advance\leftmargin by 1ex%
-            \topsep=0pt\parsep=3pt\itemsep=0ex%
-            \@openbib@code
-            \usecounter{enumiv}%
-            \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}%
-        }%
-        \typeBibItem
+  {
+  \def\bibname{\ruseng{Р›РёС‚eСЂР°С‚СѓСЂР°}{References}}
+  \bibsection{\bibname}%
+    \list{\@biblabel{\@arabic\c@enumiv}}{%
+      \settowidth\labelwidth{\@biblabel{#1}}%
+      \leftmargin\labelwidth
+      \advance\leftmargin by 1ex%
+      \topsep=0pt\parsep=3pt\itemsep=0ex%
+      \@openbib@code
+      \usecounter{enumiv}%
+      \let\p@enumiv\@empty
+      \renewcommand\theenumiv{\@arabic\c@enumiv}%
+    }%
+    \typeBibItem
 %        \clubpenalty4000%
 %        \@clubpenalty\clubpenalty
 %        \widowpenalty4000%
 %        \sfcode`\.\@m%
-    }{%
-        \def\@noitemerr{\@latex@warning{Empty `thebibliography' environment}}%
-        \endlist
-    }
+  }{%
+    \def\@noitemerr{\@latex@warning{Empty `thebibliography' environment}}%
+    \endlist
+    \begin{flushright}
+    %\typeReceived
+    \end{flushright}
+    \vskip10ex
+  }
 
-% генерация ссылки без квадратных скобок, полезна для самостоятельного оформления диапазонов вроде [X--Y,Z]
+% РіРµРЅРµСЂР°С†РёСЏ СЃСЃС‹Р»РєРё Р±РµР· РєРІР°РґСЂР°С‚РЅС‹С… СЃРєРѕР±РѕРє, РїРѕР»РµР·РЅР° РґР»СЏ СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕРіРѕ РѕС„РѕСЂРјР»РµРЅРёСЏ РґРёР°РїР°Р·РѕРЅРѕРІ РІСЂРѕРґРµ [X--Y,Z]
 \def\citenb#1{%
     \let\temp@cite\@cite
     \begingroup
@@ -537,14 +736,15 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Решение проблемы с конфликтом одноимённых меток, определённых в разных статьях
+% Р РµС€РµРЅРёРµ РїСЂРѕР±Р»РµРјС‹ СЃ РєРѕРЅС„Р»РёРєС‚РѕРј РѕРґРЅРѕРёРјС‘РЅРЅС‹С… РјРµС‚РѕРє, РѕРїСЂРµРґРµР»С‘РЅРЅС‹С… РІ СЂР°Р·РЅС‹С… СЃС‚Р°С‚СЊСЏС…
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Счётчик статей в сборнике для доопределения меток
+
+% РЎС‡С‘С‚С‡РёРє СЃС‚Р°С‚РµР№ РІ СЃР±РѕСЂРЅРёРєРµ РґР»СЏ РґРѕРѕРїСЂРµРґРµР»РµРЅРёСЏ РјРµС‚РѕРє
 \newcounter{PaperNo}
 \def\thePaperNo{\arabic{PaperNo}}
 
-% Доопределение меток в ссылках (добавление :\thePaperNo: в стандартные определения)
+% Р”РѕРѕРїСЂРµРґРµР»РµРЅРёРµ РјРµС‚РѕРє РІ СЃСЃС‹Р»РєР°С… (РґРѕР±Р°РІР»РµРЅРёРµ :\thePaperNo: РІ СЃС‚Р°РЅРґР°СЂС‚РЅС‹Рµ РѕРїСЂРµРґРµР»РµРЅРёСЏ)
 \let\globallabel\label
 \let\globalltx@label\ltx@label
 \let\globalref\ref
@@ -555,236 +755,274 @@
 \def\mmro@ref#1{\globalref{#1:\thePaperNo:}}
 \def\mmro@pageref#1{\globalpageref{#1:\thePaperNo:}}
 \def\mmro@bibitem#1{\globalbibitem{#1:\thePaperNo:}}
-\def\mmro@citex[#1]#2{%
-  \let\@citea\@empty
-  \@cite{\@for\@citeb:=#2\do
-    {\@citea\def\@citea{,\penalty\@m\ }%
-     \edef\@citeb{\expandafter\@firstofone\@citeb\@empty:\thePaperNo:}%
-     \if@filesw\immediate\write\@auxout{\string\citation{\@citeb}}\fi
-     \@ifundefined{b@\@citeb}{\mbox{\reset@font\bfseries ?}%
-       \G@refundefinedtrue
-       \@latex@warning{Citation `\@citeb' on page \thepage \space undefined}}%
-       {\hbox{\csname b@\@citeb\endcsname}}}}{#1}%
-}
 
-% Переопределение команд работы с ссылками на локальные метки
+\newcount\@minsofar
+\newcount\@min
+\newcount\@cite@temp
+%% СЏРІРЅРѕ СѓРєР°Р·С‹РІР°РµРј, С‡С‚РѕР±С‹ РїСЂРѕРёСЃС…РѕРґРёР»Р° СЃРѕСЂС‚РёСЂРѕРІРєР° Рё СЃР¶Р°С‚РёРµ, С‚Рѕ РµСЃС‚СЊ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ РІ РІРёРґРµ РёРЅС‚РµСЂРІР°Р»Р°, Р±РёР±Р»РёРѕРіСЂР°С„РёС‡РµСЃРєРёС… СЃСЃС‹Р»РѕРє
+%% РїРѕС‡РµРјСѓ-С‚Рѕ РїСЂРѕСЃС‚Рѕ РїСЂРёРјРµРЅРµРЅРёРµ \@cite Рє РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРЅРѕРјСѓ Р°СЂРіСѓРјРµРЅС‚Сѓ #2 (РєРѕРіРґР° Рє СЌР»РµРјРµРЅС‚Р°Рј РїСЂРёРїРёСЃС‹РІР°РµС‚СЃСЏ PaperNo) РЅРµ РґР°РµС‚
+%% РЅРµРѕР±С…РѕРґРёРјРѕРіРѕ СЂРµР·СѓР»СЊС‚Р°С‚Р°
+\def\mmro@citex[#1]#2{%
+\if@filesw \immediate \write \@auxout {\string \citation {#2}}\fi
+\@tempcntb\m@ne \let\@h@ld\relax \def\@citea{}%
+\@min\m@ne%
+\@cite{%
+  \@for \@citeb:=#2\do {%
+    \edef\@citeb{\expandafter\@firstofone\@citeb:\thePaperNo:}%
+    \@ifundefined {b@\@citeb}%
+    {\@h@ld\@citea\@tempcntb\m@ne{\bf ?}%
+    \@warning {Citation `\@citeb ' on page \thepage \space undefined}}%
+{\@minsofar\z@ \@for \@scan@cites:=#2\do {%
+  \edef\@scan@cites{\expandafter\@firstofone\@scan@cites:\thePaperNo:}%
+  \@ifundefined{b@\@scan@cites}%
+    {\@cite@temp\m@ne}
+    {\@cite@temp\number\csname b@\@scan@cites \endcsname \relax}%
+\ifnum\@cite@temp > \@min% select the next one to list
+    \ifnum\@minsofar = \z@
+      \@minsofar\number\@cite@temp
+      \edef\@scan@copy{\@scan@cites}\else
+    \ifnum\@cite@temp < \@minsofar
+      \@minsofar\number\@cite@temp
+      \edef\@scan@copy{\@scan@cites}\fi\fi\fi}\@tempcnta\@min
+  \ifnum\@minsofar > \z@ % some more
+    \advance\@tempcnta\@ne
+    \@min\@minsofar
+    \ifnum\@tempcnta=\@minsofar %   Number follows previous--hold on to it
+      \ifx\@h@ld\relax
+        \edef \@h@ld{\@citea\csname b@\@scan@copy\endcsname}%
+      \else \edef\@h@ld{\ifmmode{-}\else--\fi\csname b@\@scan@copy\endcsname}%
+      \fi
+    \else \@h@ld\@citea\csname b@\@scan@copy\endcsname
+          \let\@h@ld\relax
+  \fi % no more
+\fi}%
+\def\@citea{,\penalty\@highpenalty\,}}\@h@ld}{#1}}
+
+
+% РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РєРѕРјР°РЅРґ СЂР°Р±РѕС‚С‹ СЃ СЃСЃС‹Р»РєР°РјРё РЅР° Р»РѕРєР°Р»СЊРЅС‹Рµ РјРµС‚РєРё
 % INTERFACE
 \newcommand\SetPrivateLabeling{%
-    \let\label\mmro@label
-    \let\ltx@label\mmro@label % для корректной работы AmSLaTeX
-    \let\ref\mmro@ref
-    \let\pageref\mmro@pageref
-    \let\@citex\mmro@citex
-    \let\bibitem\mmro@bibitem
+  \let\label\mmro@label
+  \let\ltx@label\mmro@label % РґР»СЏ РєРѕСЂСЂРµРєС‚РЅРѕР№ СЂР°Р±РѕС‚С‹ AmSLaTeX
+  \let\ref\mmro@ref
+  \let\pageref\mmro@pageref
+  \let\@citex\mmro@citex
+  \let\bibitem\mmro@bibitem
 }
 
-% При необходимости можно откатить изменения всех команд, работающих с метками
+% РџСЂРё РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё РјРѕР¶РЅРѕ РѕС‚РєР°С‚РёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ РІСЃРµС… РєРѕРјР°РЅРґ, СЂР°Р±РѕС‚Р°СЋС‰РёС… СЃ РјРµС‚РєР°РјРё
 % INTERFACE
 \newcommand\RestoreDefaultLabeling{
-    \let\label\globallabel
-    \let\ltx@label\globalltx@label
-    \let\ref\globalref
-    \let\pageref\globalpageref
-    \let\@citex\globalcitex
-    \let\bibitem\globalbibitem
+  \let\label\globallabel
+  \let\ltx@label\globalltx@label
+  \let\ref\globalref
+  \let\pageref\globalpageref
+  \let\@citex\globalcitex
+  \let\bibitem\globalbibitem
 }
 
-% Действия, которые делаются в начале каждой статьи
-% (как в сборнике, так и при отдельной компиляции)
+% Р”РµР№СЃС‚РІРёСЏ, РєРѕС‚РѕСЂС‹Рµ РґРµР»Р°СЋС‚СЃСЏ РІ РЅР°С‡Р°Р»Рµ РєР°Р¶РґРѕР№ СЃС‚Р°С‚СЊРё
+% (РєР°Рє РІ СЃР±РѕСЂРЅРёРєРµ, С‚Р°Рє Рё РїСЂРё РѕС‚РґРµР»СЊРЅРѕР№ РєРѕРјРїРёР»СЏС†РёРё)
 \newcommand{\@BeginDocument}{
-    % Переопределение списков с меньшими интервалами (слегка экономим бумагу)
-    \renewcommand{\@listi}{%
-        \topsep=\smallskipamount % вокруг списка
-        \parsep=0pt% между абзацами внутри пункта
-        \parskip=0pt% между абзацами
-        \itemsep=0pt% между пунктами
-        \itemindent=0pt% абзацный выступ
-        \labelsep=1.5ex% расстояние до метки
-        \leftmargin=3.5ex% отступ слева
-        \rightmargin=0pt} % отступ справа
-    \renewcommand{\@listii}{\@listi\topsep=0pt}%
-    \renewcommand{\@listiii}{\@listii}%
-    \renewcommand{\@listiv}{\@listii}%
-    \renewcommand{\labelitemi}{---}%
-    \renewcommand{\labelitemii}{---}%
-    \renewcommand{\labelitemiii}{---}%
-    \renewcommand{\labelitemiv}{---}%
-    \renewcommand{\theenumii}{\asbuk{enumii}}%
-    % Обнуление счётчиков
-    \setcounter{equation}{0}%
-    \setcounter{table}{0}%
-    \setcounter{figure}{0}%
-    \setcounter{algorithm}{0}%
-    \setcounter{footnote}{0}%
-    \setcounter{Theorem}{0}%
-    \setcounter{State}{0}%
-    \setcounter{Corollary}{0}%
-    \setcounter{Def}{0}%
-    \setcounter{Axiom}{0}%
-    \setcounter{Hypothesis}{0}%
-    \setcounter{Assumption}{0}%
-    \setcounter{Problem}{0}%
-    \setcounter{Example}{0}%
-    \setcounter{Remark}{0}%
-    \setcounter{Fact}{0}%
-    \setcounter{Notice}{0}%
-    \setcounter{Rule}{0}%
-    \setcounter{Condition}{0}%
-    % счётчик замечаний рецензента
-    \setcounter{mmroReviewerNote}{0}%
-    % счётчик статей
-    \refstepcounter{PaperNo}%
-    % русификация
-    \ruseng{\hyphenation{иои ммро рффи}}\relax
-    \def\bibname{\ruseng{Литература}{References}}%
-    \def\figurename{\ruseng{Рис.}{Fig.}}%
-    \def\tablename{\ruseng{Таблица}{Table}}%
+  % РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ СЃРїРёСЃРєРѕРІ СЃ РјРµРЅСЊС€РёРјРё РёРЅС‚РµСЂРІР°Р»Р°РјРё (СЃР»РµРіРєР° СЌРєРѕРЅРѕРјРёРј Р±СѓРјР°РіСѓ)
+  \renewcommand{\@listi}{%
+      \topsep=\smallskipamount % РІРѕРєСЂСѓРі СЃРїРёСЃРєР°
+      \parsep=0pt% РјРµР¶РґСѓ Р°Р±Р·Р°С†Р°РјРё РІРЅСѓС‚СЂРё РїСѓРЅРєС‚Р°
+      \parskip=0pt% РјРµР¶РґСѓ Р°Р±Р·Р°С†Р°РјРё
+      \itemsep=0pt% РјРµР¶РґСѓ РїСѓРЅРєС‚Р°РјРё
+      \itemindent=0pt% Р°Р±Р·Р°С†РЅС‹Р№ РІС‹СЃС‚СѓРї
+      \labelsep=1.5ex% СЂР°СЃСЃС‚РѕСЏРЅРёРµ РґРѕ РјРµС‚РєРё
+      \leftmargin=3.5ex% РѕС‚СЃС‚СѓРї СЃР»РµРІР°
+      \rightmargin=0pt} % РѕС‚СЃС‚СѓРї СЃРїСЂР°РІР°
+  \renewcommand{\@listii}{\@listi\topsep=0pt}%
+  \renewcommand{\@listiii}{\@listii}%
+  \renewcommand{\@listiv}{\@listii}%
+  \renewcommand{\labelitemi}{--}%
+  \renewcommand{\labelitemii}{--}%
+  \renewcommand{\labelitemiii}{--}%
+  \renewcommand{\labelitemiv}{--}%
+  \renewcommand{\theenumii}{\asbuk{enumii}}%
+  % РћР±РЅСѓР»РµРЅРёРµ СЃС‡С‘С‚С‡РёРєРѕРІ
+  \setcounter{equation}{0}%
+  \setcounter{table}{0}%
+  \setcounter{figure}{0}%
+  \setcounter{algorithm}{0}%
+  \setcounter{footnote}{0}%
+  \setcounter{Theorem}{0}%
+  \setcounter{State}{0}%
+  \setcounter{Corollary}{0}%
+  \setcounter{Def}{0}%
+  \setcounter{Axiom}{0}%
+  \setcounter{Hypothesis}{0}%
+  \setcounter{Assumption}{0}%
+  \setcounter{Problem}{0}%
+  \setcounter{Example}{0}%
+  \setcounter{Remark}{0}%
+  \setcounter{Fact}{0}%
+  \setcounter{Notice}{0}%
+  \setcounter{Rule}{0}%
+  \setcounter{Condition}{0}%
+  \setcounter{sectionCounter}{0}
+  \setcounter{paragraphCounter}{0}
+  % СЃС‡С‘С‚С‡РёРє Р·Р°РјРµС‡Р°РЅРёР№ СЂРµС†РµРЅР·РµРЅС‚Р°
+  \setcounter{mmroReviewerNote}{0}%
+  % СЃС‡С‘С‚С‡РёРє СЃС‚Р°С‚РµР№
+  \refstepcounter{PaperNo}%
+  % СЂСѓСЃРёС„РёРєР°С†РёСЏ
+  \ruseng{\hyphenation{РёРѕРё РјРјСЂРѕ СЂС„С„Рё}}\relax
+  \def\figurename{\ruseng{Р РёСЃ.}{Figure}}%
+  \def\tablename{\ruseng{РўР°Р±Р»РёС†Р°}{Table}}%
 }
 
-% Действия, которые делаются в конце каждой статьи
-% (только для сборника; при отдельной компиляции статьи всё это не нужно)
+% Р”РµР№СЃС‚РІРёСЏ, РєРѕС‚РѕСЂС‹Рµ РґРµР»Р°СЋС‚СЃСЏ РІ РєРѕРЅС†Рµ РєР°Р¶РґРѕР№ СЃС‚Р°С‚СЊРё
+% (С‚РѕР»СЊРєРѕ РґР»СЏ СЃР±РѕСЂРЅРёРєР°; РїСЂРё РѕС‚РґРµР»СЊРЅРѕР№ РєРѕРјРїРёР»СЏС†РёРё СЃС‚Р°С‚СЊРё РІСЃС‘ СЌС‚Рѕ РЅРµ РЅСѓР¶РЅРѕ)
 \newcommand\@EndDocument{%
-    % единственное в этой команде, что может повлиять на текст:
-    \balance
-    % метка конца статьи
-    \globallabel{\@paper@name:end}%
-    % архивируются статьи, прошедшие корректуру и/или содержащие \REVIEWERNOTE
-    \ifthenelse{\equal+{\@paper@corrected}\or\not\equal{\themmroReviewerNote}{0}}{%
-        \ifwritebat
-            \@write@corrauthors@bat{\ZipAdd \@paper@name \@paper@name.tex \@paper@name.pdf}%
-            \@for\@pix@elem:=\@paper@pixlist\do{%
-                \@write@corrauthors@bat{\ZipAdd \@paper@name \@pix@elem}%
-            }%
-        \fi
-    }{}%
-    % в оглавление вставляется отметка о количестве замечаний рецензента
-    \ifthenelse{\equal{\themmroReviewerNote}{0}}{}{%
-        \ifdraft{% если черновая печать
-            \addtocontents{toc}{%
-                \protect\par
-                \protect\nopagebreak$\checkmark\kern-1.36ex\checkmark$\quad
-                \textsl{В текст статьи включены замечания рецензента: \themmroReviewerNote}}%
-        }\fi
-    }%
-    % пишется информация в текстовый файл для базы статей
-    \ifwritetab
-        \@write@papers@table{%
-            \@paper@name|% имя файла
-            \@chapter@code|% код раздела
-            \@author|% авторы или список авторов через запятую
-            \@title|% название статьи
-            \@author@eng|% авторы или список авторов через запятую на английском
-            \@title@eng|% название статьи на английском
-            \@organization|% организация
-            \@email|% адрес или список адресов, как их указали авторы
-            \@reviewers@list|% список рецензентов и корректоров
-            \@paper@corrected|% + прошла корректуру / - не прошла
-            \@paper@reviewed|% + прошла рецензирование / - не прошла
-            \@paper@accepted|% + принята в печать / ? желательна доработка / ! необходима доработка / - не принята
-            \themmroReviewerNote % количество замечаний \REVIEWERNOTE, вставленных рецензентами в текст статьи
-        }%
+  %% РµРґРёРЅСЃС‚РІРµРЅРЅРѕРµ РІ СЌС‚РѕР№ РєРѕРјР°РЅРґРµ, С‡С‚Рѕ РјРѕР¶РµС‚ РїРѕРІР»РёСЏС‚СЊ РЅР° С‚РµРєСЃС‚:
+  \balance
+
+  %% РјРµС‚РєР° РєРѕРЅС†Р° СЃС‚Р°С‚СЊРё
+  \globallabel{\@paper@name:end}%
+  % Р°СЂС…РёРІРёСЂСѓСЋС‚СЃСЏ СЃС‚Р°С‚СЊРё, РїСЂРѕС€РµРґС€РёРµ РєРѕСЂСЂРµРєС‚СѓСЂСѓ Рё/РёР»Рё СЃРѕРґРµСЂР¶Р°С‰РёРµ \REVIEWERNOTE
+  \ifthenelse{\equal+{\@paper@corrected}\or\not\equal{\themmroReviewerNote}{0}}{%
+    \ifwritebat
+      \@write@corrauthors@bat{\ZipAdd \@paper@name \@paper@name.tex \@paper@name.pdf}%
+      \@for\@pix@elem:=\@paper@pixlist\do{%
+          \@write@corrauthors@bat{\ZipAdd \@paper@name \@pix@elem}%
+      }%
     \fi
-    % пишется информация в HTML-файл для списка статей -- если выполняется условие включения статьи
-    \ifthenelse{%
-        \(\equal{\@paper@corrected}{\@@corrected}\or \equal{\@@corrected}{*}\) \and
-        \(\equal{\@paper@reviewed}{\@@reviewed}\or \equal{\@@reviewed}{*}\) \and
-        \(\equal{\@paper@accepted@}{\@@accepted}\or \equal{\@@accepted}{*}\)
-    }{%
-        \ifwritehtml
-        \@write@papers@html{<br><i>\@author</i> <b>\@title</b>}%
-        %\@write@papers@html{<br>({{\@organization}})}%
-        \@write@papers@html{<br>{{\@abstract}}}%
-        \fi
-    }{}%
+  }{}%
+  % РІ РѕРіР»Р°РІР»РµРЅРёРµ РІСЃС‚Р°РІР»СЏРµС‚СЃСЏ РѕС‚РјРµС‚РєР° Рѕ РєРѕР»РёС‡РµСЃС‚РІРµ Р·Р°РјРµС‡Р°РЅРёР№ СЂРµС†РµРЅР·РµРЅС‚Р°
+  \ifthenelse{\equal{\themmroReviewerNote}{0}}{}{%
+    \ifdraft{% РµСЃР»Рё С‡РµСЂРЅРѕРІР°СЏ РїРµС‡Р°С‚СЊ
+      \addtocontents{toc}{%
+        \protect\par
+        \protect\nopagebreak$\checkmark\kern-1.36ex\checkmark$\quad
+        \textsl{Р’ С‚РµРєСЃС‚ СЃС‚Р°С‚СЊРё РІРєР»СЋС‡РµРЅС‹ Р·Р°РјРµС‡Р°РЅРёСЏ СЂРµС†РµРЅР·РµРЅС‚Р°: \themmroReviewerNote}}%
+    }\fi
+  }%
+  % РїРёС€РµС‚СЃСЏ РёРЅС„РѕСЂРјР°С†РёСЏ РІ С‚РµРєСЃС‚РѕРІС‹Р№ С„Р°Р№Р» РґР»СЏ Р±Р°Р·С‹ СЃС‚Р°С‚РµР№
+  \ifwritetab
+    \@write@papers@table{%
+      \@paper@name|% РёРјСЏ С„Р°Р№Р»Р°
+      \@chapter@code|% РєРѕРґ СЂР°Р·РґРµР»Р°
+      \@author|% Р°РІС‚РѕСЂС‹ РёР»Рё СЃРїРёСЃРѕРє Р°РІС‚РѕСЂРѕРІ С‡РµСЂРµР· Р·Р°РїСЏС‚СѓСЋ
+      \@title|% РЅР°Р·РІР°РЅРёРµ СЃС‚Р°С‚СЊРё
+      \@author@eng|% Р°РІС‚РѕСЂС‹ РёР»Рё СЃРїРёСЃРѕРє Р°РІС‚РѕСЂРѕРІ С‡РµСЂРµР· Р·Р°РїСЏС‚СѓСЋ РЅР° Р°РЅРіР»РёР№СЃРєРѕРј
+      \@title@eng|% РЅР°Р·РІР°РЅРёРµ СЃС‚Р°С‚СЊРё РЅР° Р°РЅРіР»РёР№СЃРєРѕРј
+      \@organization|% РѕСЂРіР°РЅРёР·Р°С†РёСЏ
+      \@email|% Р°РґСЂРµСЃ РёР»Рё СЃРїРёСЃРѕРє Р°РґСЂРµСЃРѕРІ, РєР°Рє РёС… СѓРєР°Р·Р°Р»Рё Р°РІС‚РѕСЂС‹
+      \@reviewers@list|% СЃРїРёСЃРѕРє СЂРµС†РµРЅР·РµРЅС‚РѕРІ Рё РєРѕСЂСЂРµРєС‚РѕСЂРѕРІ
+      \@paper@corrected|% + РїСЂРѕС€Р»Р° РєРѕСЂСЂРµРєС‚СѓСЂСѓ / - РЅРµ РїСЂРѕС€Р»Р°
+      \@paper@reviewed|% + РїСЂРѕС€Р»Р° СЂРµС†РµРЅР·РёСЂРѕРІР°РЅРёРµ / - РЅРµ РїСЂРѕС€Р»Р°
+      \@paper@accepted|% + РїСЂРёРЅСЏС‚Р° РІ РїРµС‡Р°С‚СЊ / ? Р¶РµР»Р°С‚РµР»СЊРЅР° РґРѕСЂР°Р±РѕС‚РєР° / ! РЅРµРѕР±С…РѕРґРёРјР° РґРѕСЂР°Р±РѕС‚РєР° / - РЅРµ РїСЂРёРЅСЏС‚Р°
+      \themmroReviewerNote % РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РјРµС‡Р°РЅРёР№ \REVIEWERNOTE, РІСЃС‚Р°РІР»РµРЅРЅС‹С… СЂРµС†РµРЅР·РµРЅС‚Р°РјРё РІ С‚РµРєСЃС‚ СЃС‚Р°С‚СЊРё
+    }%
+  \fi
+  % РїРёС€РµС‚СЃСЏ РёРЅС„РѕСЂРјР°С†РёСЏ РІ HTML-С„Р°Р№Р» РґР»СЏ СЃРїРёСЃРєР° СЃС‚Р°С‚РµР№ -- РµСЃР»Рё РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ СѓСЃР»РѕРІРёРµ РІРєР»СЋС‡РµРЅРёСЏ СЃС‚Р°С‚СЊРё
+  \ifthenelse{%
+    \(\equal{\@paper@corrected}{\@@corrected}\or \equal{\@@corrected}{*}\) \and
+    \(\equal{\@paper@reviewed}{\@@reviewed}\or \equal{\@@reviewed}{*}\) \and
+    \(\equal{\@paper@accepted@}{\@@accepted}\or \equal{\@@accepted}{*}\)
+  }{%
+    \ifwritehtml
+    \@write@papers@html{<br><i>\@author</i> <b>\@title</b>}%
+    %\@write@papers@html{<br>({{\@organization}})}%
+    \@write@papers@html{<br>{{\@abstract}}}%
+    \fi
+  }{}%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Вставка статей, отслеживание файлов, сборка пакетов для авторов и рецензентов
+% Р’СЃС‚Р°РІРєР° СЃС‚Р°С‚РµР№, РѕС‚СЃР»РµР¶РёРІР°РЅРёРµ С„Р°Р№Р»РѕРІ, СЃР±РѕСЂРєР° РїР°РєРµС‚РѕРІ РґР»СЏ Р°РІС‚РѕСЂРѕРІ Рё СЂРµС†РµРЅР·РµРЅС‚РѕРІ
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Вспомогательные файлы, генерируемые при компиляции сборника
+% Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ С„Р°Р№Р»С‹, РіРµРЅРµСЂРёСЂСѓРµРјС‹Рµ РїСЂРё РєРѕРјРїРёР»СЏС†РёРё СЃР±РѕСЂРЅРёРєР°
 \ifwritetab
-    \newwrite\@papers@table
+  \newwrite\@papers@table
 \fi
 \ifwritehtml
-    \newwrite\@papers@html
+  \newwrite\@papers@html
 \fi
 \ifwritebat
-    \newwrite\@reviewers@bat
-    \newwrite\@authors@bat
-    \newwrite\@corrauthors@bat
-    \newwrite\@make@bat
+  \newwrite\@reviewers@bat
+  \newwrite\@authors@bat
+  \newwrite\@corrauthors@bat
+  \newwrite\@make@bat
 \fi
-% Команда добавления файла в архив, записываемая в bat-файлы
+% РљРѕРјР°РЅРґР° РґРѕР±Р°РІР»РµРЅРёСЏ С„Р°Р№Р»Р° РІ Р°СЂС…РёРІ, Р·Р°РїРёСЃС‹РІР°РµРјР°СЏ РІ bat-С„Р°Р№Р»С‹
 % INTERFACE
 \newcommand\ZipAdd[1]{rar a #1.rar }
 %\newcommand\ZipAdd[1]{zzip -add #1.zip }
 
-% Окружение для вставки статей целиком
+% РћРєСЂСѓР¶РµРЅРёРµ РґР»СЏ РІСЃС‚Р°РІРєРё СЃС‚Р°С‚РµР№ С†РµР»РёРєРѕРј
 \newenvironment{papers}{
-    \gdef\@paper@name{}%
-    \gdef\@paper@pixlist{}%
-    \renewcommand{\documentclass}[2][0]{\relax}%
-    \renewcommand{\usepackage}[2][0]{\relax}%
-    \renewcommand\RestoreDefaultLabeling{\relax}%
-    \ifdraft\relax\else\NOREVIEWERNOTES\fi
-    \chaptercode{}
-    \gdef\typeChapterCode##1{(##1)}
-    \renewenvironment{document}{\SetPrivateLabeling}{\@EndDocument}%
-    % создание файла со списком всех статей papers.tab
-    \ifwritetab
-        \immediate\openout\@papers@table=_papers.tab
-        \gdef\@write@papers@table##1{%
-            \immediate\write\@papers@table{##1}%
-        }%
-    \fi
-    % создание файла со списком всех статей papers.html
-    \ifwritehtml
-        \immediate\openout\@papers@html=_papers.html
-        \gdef\@write@papers@html##1{%
-            \protected@write\@papers@html{}{##1}%
-            %\immediate\write\@papers@html{##1}%
-        }%
-    \fi
-    % создание файла reviewers.bat
-    \ifwritebat
-        \immediate\openout\@reviewers@bat=reviewers.bax
-        \gdef\@write@reviewers@bat##1{%
-            \immediate\write\@reviewers@bat{##1}%
-        }%
-        % создание файла authors.bat
-        \immediate\openout\@authors@bat=authors.bax
-        \gdef\@write@authors@bat##1{%
-            \immediate\write\@authors@bat{##1}%
-        }%
-        % создание файла corr-authors.bat
-        % архивируются только статьи, прошедшие корректуру и/или содержащие \REVIEWERNOTE
-        \immediate\openout\@corrauthors@bat=corr-authors.bax
-        \gdef\@write@corrauthors@bat##1{%
-            \immediate\write\@corrauthors@bat{##1}%
-        }%
-        % создание файла make-separately.bat
-        \immediate\openout\@make@bat=make-separately.bax
-        \gdef\@write@make@bat##1{%
-            \immediate\write\@make@bat{##1}%
-        }%
-        \@write@make@bat{del *.aux *.log *.toc *.dvi *.pdf}%
-    \fi
-    % если сборник, то в самом конце ничего не делать
-    \AtEndDocument{\relax}
+  \gdef\@paper@name{}%
+  \gdef\@paper@pixlist{}%
+  \renewcommand{\documentclass}[2][0]{\relax}%
+  \renewcommand{\usepackage}[2][0]{\relax}%
+  \renewcommand\RestoreDefaultLabeling{\relax}%
+  \ifdraft\relax\else\NOREVIEWERNOTES\fi
+
+  %%%%%%% РµСЃР»Рё РЅСѓР¶РЅРѕ РІ РІРµСЂС…РЅРёР№ РєРѕР»РѕРЅС‚РёС‚СѓР» РґРѕР±Р°РІРёС‚СЊ РЅР°Р·РІР°РЅРёРµ Р¶СѓСЂРЅР°Р»Р° - СЌС‚Рѕ Р·РґРµСЃСЊ
+  \chaptercode{}
+  %%%%%%%
+
+  \gdef\typeChapterCode##1{(##1)}
+  \renewenvironment{document}{\SetPrivateLabeling}{\@EndDocument}%
+  % СЃРѕР·РґР°РЅРёРµ С„Р°Р№Р»Р° СЃРѕ СЃРїРёСЃРєРѕРј РІСЃРµС… СЃС‚Р°С‚РµР№ papers.tab
+  \ifwritetab
+    \immediate\openout\@papers@table=_papers.tab
+    \gdef\@write@papers@table##1{%
+      \immediate\write\@papers@table{##1}%
+    }%
+  \fi
+  % СЃРѕР·РґР°РЅРёРµ С„Р°Р№Р»Р° СЃРѕ СЃРїРёСЃРєРѕРј РІСЃРµС… СЃС‚Р°С‚РµР№ papers.html
+  \ifwritehtml
+    \immediate\openout\@papers@html=_papers.html
+    \gdef\@write@papers@html##1{%
+      \protected@write\@papers@html{}{##1}%
+      %\immediate\write\@papers@html{##1}%
+    }%
+  \fi
+  % СЃРѕР·РґР°РЅРёРµ С„Р°Р№Р»Р° reviewers.bat
+  \ifwritebat
+    \immediate\openout\@reviewers@bat=reviewers.bax
+    \gdef\@write@reviewers@bat##1{%
+      \immediate\write\@reviewers@bat{##1}%
+    }%
+    % СЃРѕР·РґР°РЅРёРµ С„Р°Р№Р»Р° authors.bat
+    \immediate\openout\@authors@bat=authors.bax
+    \gdef\@write@authors@bat##1{%
+      \immediate\write\@authors@bat{##1}%
+    }%
+    % СЃРѕР·РґР°РЅРёРµ С„Р°Р№Р»Р° corr-authors.bat
+    % Р°СЂС…РёРІРёСЂСѓСЋС‚СЃСЏ С‚РѕР»СЊРєРѕ СЃС‚Р°С‚СЊРё, РїСЂРѕС€РµРґС€РёРµ РєРѕСЂСЂРµРєС‚СѓСЂСѓ Рё/РёР»Рё СЃРѕРґРµСЂР¶Р°С‰РёРµ \REVIEWERNOTE
+    \immediate\openout\@corrauthors@bat=corr-authors.bax
+    \gdef\@write@corrauthors@bat##1{%
+      \immediate\write\@corrauthors@bat{##1}%
+    }%
+    % СЃРѕР·РґР°РЅРёРµ С„Р°Р№Р»Р° make-separately.bat
+    \immediate\openout\@make@bat=make-separately.bax
+    \gdef\@write@make@bat##1{%
+      \immediate\write\@make@bat{##1}%
+    }%
+    \@write@make@bat{del *.aux *.log *.toc *.dvi *.pdf}%
+  \fi
+  % РµСЃР»Рё СЃР±РѕСЂРЅРёРє, С‚Рѕ РІ СЃР°РјРѕРј РєРѕРЅС†Рµ РЅРёС‡РµРіРѕ РЅРµ РґРµР»Р°С‚СЊ
+  \AtEndDocument{\relax}
 }{%
     \chaptercode{}
 }
 
-% если отдельная статья, то в~конце определить метку и сбалансировать колонки
+% РµСЃР»Рё РѕС‚РґРµР»СЊРЅР°СЏ СЃС‚Р°С‚СЊСЏ, С‚Рѕ РІ~РєРѕРЅС†Рµ РѕРїСЂРµРґРµР»РёС‚СЊ РјРµС‚РєСѓ Рё СЃР±Р°Р»Р°РЅСЃРёСЂРѕРІР°С‚СЊ РєРѕР»РѕРЅРєРё
 \AtEndDocument{\globallabel{\@paper@name:end}\balance}
 
-\def\@paper@name{\jobname}% имя текущей статьи
-\def\@paper@pixlist{}% список картинок в статье
-\def\@reviewers@list{}% список рецензентов и корректоров для текущей статьи
-\def\@@reviewer{*}% рецензент, для которого собирается полный текст; по умолчанию все рецензенты
+\def\@paper@name{\jobname}% РёРјСЏ С‚РµРєСѓС‰РµР№ СЃС‚Р°С‚СЊРё
+\def\@paper@pixlist{}% СЃРїРёСЃРѕРє РєР°СЂС‚РёРЅРѕРє РІ СЃС‚Р°С‚СЊРµ
+\def\@reviewers@list{}% СЃРїРёСЃРѕРє СЂРµС†РµРЅР·РµРЅС‚РѕРІ Рё РєРѕСЂСЂРµРєС‚РѕСЂРѕРІ РґР»СЏ С‚РµРєСѓС‰РµР№ СЃС‚Р°С‚СЊРё
+\def\@@reviewer{*}% СЂРµС†РµРЅР·РµРЅС‚, РґР»СЏ РєРѕС‚РѕСЂРѕРіРѕ СЃРѕР±РёСЂР°РµС‚СЃСЏ РїРѕР»РЅС‹Р№ С‚РµРєСЃС‚; РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РІСЃРµ СЂРµС†РµРЅР·РµРЅС‚С‹
 
-% подсчет числа статей
+% РїРѕРґСЃС‡РµС‚ С‡РёСЃР»Р° СЃС‚Р°С‚РµР№
 \newcounter{mmroTotal}
 \newcounter{mmroCorrected}
 \newcounter{mmroReviewed}
@@ -797,15 +1035,15 @@
 \def\@paper@accepted{+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Команда включения статьи в сборник с отметками о текущем состоянии статьи:
-% \paper123{автор}[рецензент]
-%       1   ={+/-}  -статья прошла/нет корректуру
-%        2  ={+/-}  -статья прошла/нет рецензирование
-%         3 ={+/-/?/!}  -статья принята/отвергнута/может/должна быть доработана
-% при включении статей полагается: ?=+  !=-
+% РљРѕРјР°РЅРґР° РІРєР»СЋС‡РµРЅРёСЏ СЃС‚Р°С‚СЊРё РІ СЃР±РѕСЂРЅРёРє СЃ РѕС‚РјРµС‚РєР°РјРё Рѕ С‚РµРєСѓС‰РµРј СЃРѕСЃС‚РѕСЏРЅРёРё СЃС‚Р°С‚СЊРё:
+% \paper123{Р°РІС‚РѕСЂ}[СЂРµС†РµРЅР·РµРЅС‚]
+%       1   ={+/-}  -СЃС‚Р°С‚СЊСЏ РїСЂРѕС€Р»Р°/РЅРµС‚ РєРѕСЂСЂРµРєС‚СѓСЂСѓ
+%        2  ={+/-}  -СЃС‚Р°С‚СЊСЏ РїСЂРѕС€Р»Р°/РЅРµС‚ СЂРµС†РµРЅР·РёСЂРѕРІР°РЅРёРµ
+%         3 ={+/-/?/!}  -СЃС‚Р°С‚СЊСЏ РїСЂРёРЅСЏС‚Р°/РѕС‚РІРµСЂРіРЅСѓС‚Р°/РјРѕР¶РµС‚/РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РґРѕСЂР°Р±РѕС‚Р°РЅР°
+% РїСЂРё РІРєР»СЋС‡РµРЅРёРё СЃС‚Р°С‚РµР№ РїРѕР»Р°РіР°РµС‚СЃСЏ: ?=+  !=-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Включать в сборник статьи только с этим набором отметок (* для всех)
+% Р’РєР»СЋС‡Р°С‚СЊ РІ СЃР±РѕСЂРЅРёРє СЃС‚Р°С‚СЊРё С‚РѕР»СЊРєРѕ СЃ СЌС‚РёРј РЅР°Р±РѕСЂРѕРј РѕС‚РјРµС‚РѕРє (* РґР»СЏ РІСЃРµС…)
 % INTERFACE
 \def\FILTER#1#2#3{%
     \gdef\@@corrected{#1}%
@@ -820,25 +1058,31 @@
     {\FILTER**+}
 \fi
 
-% Команда для вставки статьи целиком
+% РљРѕРјР°РЅРґР° РґР»СЏ РІСЃС‚Р°РІРєРё СЃС‚Р°С‚СЊРё С†РµР»РёРєРѕРј
 % INTERFACE
 \def\paper#1#2#3#4{%
-    \gdef\@paper@corrected{#1}
-    \gdef\@paper@reviewed{#2}
-    \gdef\@paper@accepted{#3}
-    \gdef\@paper@name{#4}\refstepcounter{mmroTotal}%
-    \gdef\@paper@pixlist{}
-    \ifthenelse{\equal+{#1}}{\refstepcounter{mmroCorrected}}{}%
-    \ifthenelse{\equal+{#2}}{\refstepcounter{mmroReviewed}}{}%
-    \ifthenelse{\equal+{#3}}{\refstepcounter{mmroAccepted}}{}%
-    \ifthenelse{\equal?{#3}}{\refstepcounter{mmroMayBeCompleted}}{}%
-    \ifthenelse{\equal!{#3}}{\refstepcounter{mmroMustBeCompleted}}{}%
-    \ifthenelse{\equal-{#3}}{\refstepcounter{mmroRejected}}{}%
-    \ifwritebat
-        \@write@authors@bat{\ZipAdd \@paper@name \@paper@name.tex \@paper@name.pdf}%
-    \fi
-    \@ifnextchar[\@paper@ii\@paper@i
+  \gdef\@paper@corrected{#1}
+  \gdef\@paper@reviewed{#2}
+  \gdef\@paper@accepted{#3}
+  \gdef\@paper@name{#4}\refstepcounter{mmroTotal}%
+  \gdef\@paper@pixlist{}
+  \ifthenelse{\equal+{#1}}{\refstepcounter{mmroCorrected}}{}%
+  \ifthenelse{\equal+{#2}}{\refstepcounter{mmroReviewed}}{}%
+  \ifthenelse{\equal+{#3}}{\refstepcounter{mmroAccepted}}{}%
+  \ifthenelse{\equal?{#3}}{\refstepcounter{mmroMayBeCompleted}}{}%
+  \ifthenelse{\equal!{#3}}{\refstepcounter{mmroMustBeCompleted}}{}%
+  \ifthenelse{\equal-{#3}}{\refstepcounter{mmroRejected}}{}%
+  \ifwritebat
+      \@write@authors@bat{\ZipAdd \@paper@name \@paper@name.tex \@paper@name.pdf}%
+  \fi
+  \@ifnextchar[\@paper@ii\@paper@i
+  %%Р±РµР· СЌС‚РѕРіРѕ РїРѕРґР°РІР»СЏРµС‚СЃСЏ РІС‹РІРѕРґ РєРѕР»РѕРЅС‚РёС‚СѓР»РѕРІ РЅР° РїРѕСЃР»РµРґРЅРµР№ СЃС‚СЂР°РЅРёС†Рµ РєР°Р¶РґРѕР№ СЃС‚Р°С‚СЊРё РїСЂРё СЃР±РѕСЂРєРµ РІС‹РїСѓСЃРєР°
+  \ifthenelse{\equal{\@title@eng}{}}
+    {\Russian}%
+    {\English}%
+  \pagestyle{headfoot}
 }
+
 \def\@paper@i{%
     \gdef\@reviewers@list{}%
     \ifthenelse{\equal{\@@reviewer}{}\or\equal{\@@reviewer}{*}}{\@paper}{}%
@@ -867,32 +1111,32 @@
 }
 \def\GhostScriptExe{C:\Program Files (x86)\gs\gs8.64\bin\gswin32c.exe}
 \def\@paper{%
-    \begingroup
-    \gdef\@paper@accepted@{\@paper@accepted}%
-    \ifthenelse{\equal?{\@paper@accepted}}{\gdef\@paper@accepted@{+}}{}% всё-таки включаем
-    \ifthenelse{\equal!{\@paper@accepted}}{\gdef\@paper@accepted@{-}}{}% пока не пришла доработка, не включаем
-    \ifthenelse{%
-        \(\equal{\@paper@corrected}{\@@corrected}\or \equal{\@@corrected}{*}\) \and
-        \(\equal{\@paper@reviewed}{\@@reviewed}\or  \equal{\@@reviewed}{*}\) \and
-        \(\equal{\@paper@accepted@}{\@@accepted}\or  \equal{\@@accepted}{*}\)
-    }{%
-        \ifwritebat
-            \@write@make@bat{TeXify \@paper@name.tex}%
-            %\@write@make@bat{DviPdfm -p a4 \@paper@name.dvi}%
-            \@write@make@bat{dvips.exe \@paper@name.dvi}%  --- закомментировать при использовании DviPdfm
-            \@write@make@bat{"\GhostScriptExe" -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sPAPERSIZE=a4 -r600 -dCompatibilityLevel=1.4 -sOutputFile="\@paper@name.pdf" -c save pop -f "\@paper@name.ps"}%  --- закомментировать при использовании DviPdfm
-            \@write@make@bat{del \@paper@name.ps}%  --- закомментировать при использовании DviPdfm
-        \fi
-        \Russian
-        \input{\@paper@name}%
-    }%
-    {}%
-    \endgroup
+  \begingroup
+  \gdef\@paper@accepted@{\@paper@accepted}%
+  \ifthenelse{\equal?{\@paper@accepted}}{\gdef\@paper@accepted@{+}}{}% РІСЃС‘-С‚Р°РєРё РІРєР»СЋС‡Р°РµРј
+  \ifthenelse{\equal!{\@paper@accepted}}{\gdef\@paper@accepted@{-}}{}% РїРѕРєР° РЅРµ РїСЂРёС€Р»Р° РґРѕСЂР°Р±РѕС‚РєР°, РЅРµ РІРєР»СЋС‡Р°РµРј
+  \ifthenelse{%
+    \(\equal{\@paper@corrected}{\@@corrected}\or \equal{\@@corrected}{*}\) \and
+    \(\equal{\@paper@reviewed}{\@@reviewed}\or  \equal{\@@reviewed}{*}\) \and
+    \(\equal{\@paper@accepted@}{\@@accepted}\or  \equal{\@@accepted}{*}\)
+  }{%
+      \ifwritebat
+        \@write@make@bat{TeXify \@paper@name.tex}%
+        %\@write@make@bat{DviPdfm -p a4 \@paper@name.dvi}%
+        \@write@make@bat{dvips.exe \@paper@name.dvi}%  --- Р·Р°РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ РїСЂРё РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРё DviPdfm
+        \@write@make@bat{"\GhostScriptExe" -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sPAPERSIZE=a4 -r600 -dCompatibilityLevel=1.4 -sOutputFile="\@paper@name.pdf" -c save pop -f "\@paper@name.ps"}%  --- Р·Р°РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ РїСЂРё РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРё DviPdfm
+        \@write@make@bat{del \@paper@name.ps}%  --- Р·Р°РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ РїСЂРё РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРё DviPdfm
+      \fi
+      \Russian
+      \input{\@paper@name}%
+  }%
+  {}%
+  \endgroup
 }
 
-% Занести имя включаемого графического файла в архивы и огравление
+% Р—Р°РЅРµСЃС‚Рё РёРјСЏ РІРєР»СЋС‡Р°РµРјРѕРіРѕ РіСЂР°С„РёС‡РµСЃРєРѕРіРѕ С„Р°Р№Р»Р° РІ Р°СЂС…РёРІС‹ Рё РѕРіСЂР°РІР»РµРЅРёРµ
 \newcommand\@include@graphics@file[1]{%
-    % каждому рецензенту добавить данный графический файл в архив
+    % РєР°Р¶РґРѕРјСѓ СЂРµС†РµРЅР·РµРЅС‚Сѓ РґРѕР±Р°РІРёС‚СЊ РґР°РЅРЅС‹Р№ РіСЂР°С„РёС‡РµСЃРєРёР№ С„Р°Р№Р» РІ Р°СЂС…РёРІ
     \@for\@reviewer@name:=\@reviewers@list\do{%
         \ifthenelse{\equal{\@@reviewer}{\@reviewer@name}\or\equal{\@@reviewer}{*}}{%
             \ifwritebat
@@ -900,7 +1144,7 @@
             \fi
         }{}%
     }%
-    % сформировать список всех включаемых графических файлов
+    % СЃС„РѕСЂРјРёСЂРѕРІР°С‚СЊ СЃРїРёСЃРѕРє РІСЃРµС… РІРєР»СЋС‡Р°РµРјС‹С… РіСЂР°С„РёС‡РµСЃРєРёС… С„Р°Р№Р»РѕРІ
     \ifthenelse{\equal{\@paper@name}{}}{}{%
         \ifwritebat
             \@write@authors@bat{\ZipAdd \@paper@name #1}%
@@ -910,14 +1154,14 @@
             {\gdef\@paper@pixlist{#1}}%
             {\xdef\@paper@pixlist{\@old@paper@pixlist,#1}}%
     }%
-%    % в черновом режиме в оглавление вставляются отметки о включённых графических файлах
+%    % РІ С‡РµСЂРЅРѕРІРѕРј СЂРµР¶РёРјРµ РІ РѕРіР»Р°РІР»РµРЅРёРµ РІСЃС‚Р°РІР»СЏСЋС‚СЃСЏ РѕС‚РјРµС‚РєРё Рѕ РІРєР»СЋС‡С‘РЅРЅС‹С… РіСЂР°С„РёС‡РµСЃРєРёС… С„Р°Р№Р»Р°С…
 %    \ifdraft%
 %        \addtocontents{toc}{\protect\par\protect\nopagebreak$\blacksquare$\quad\protect\url{#1}}%
 %    \fi
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Поддержка рецензирования и корректуры
+% РџРѕРґРґРµСЂР¶РєР° СЂРµС†РµРЅР·РёСЂРѕРІР°РЅРёСЏ Рё РєРѕСЂСЂРµРєС‚СѓСЂС‹
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcounter{mmroReviewerNote}
@@ -925,13 +1169,13 @@
 \newcounter{mmroTotalReviewerNotes}
 \newcounter{mmroFinalReviewerNotes}
 
-% Язык замечаний
+% РЇР·С‹Рє Р·Р°РјРµС‡Р°РЅРёР№
 \newcommand\LANGNOTE{\Rus}
 
-% Проглотить следующий пробел
+% РџСЂРѕРіР»РѕС‚РёС‚СЊ СЃР»РµРґСѓСЋС‰РёР№ РїСЂРѕР±РµР»
 \def\gobblespace{\@ifnextchar\ {\hspace{-1ex}}\relax}
 
-% Вставка замечания рецензента
+% Р’СЃС‚Р°РІРєР° Р·Р°РјРµС‡Р°РЅРёСЏ СЂРµС†РµРЅР·РµРЅС‚Р°
 \newcommand\typeREVIEWERNOTE[1]{{%
     \LANGNOTE\itshape\bfseries%\color{red}%
     \marginpar{%\raisebox{-1ex}{%\color{red}%
@@ -948,55 +1192,55 @@
     \@type@REVIEWERNOTE{#1}%
 }
 
-% Вставка ответа автора на замечание
+% Р’СЃС‚Р°РІРєР° РѕС‚РІРµС‚Р° Р°РІС‚РѕСЂР° РЅР° Р·Р°РјРµС‡Р°РЅРёРµ
 \newcommand\typeREPLY[1]{{\LANGNOTE\sffamily\itshape\bfseries\par---\;{#1}}}
 \newcommand\REPLY[1]{\@type@REPLY{#1}}
 
-% Счётчик авторов для генерации текста обращения
+% РЎС‡С‘С‚С‡РёРє Р°РІС‚РѕСЂРѕРІ РґР»СЏ РіРµРЅРµСЂР°С†РёРё С‚РµРєСЃС‚Р° РѕР±СЂР°С‰РµРЅРёСЏ
 \newcounter{@authors@no}
 \def\the@authors@no{\arabic{@authors@no}}
 
-% Итоговое замечание в конце отрецензированной статьи
+% РС‚РѕРіРѕРІРѕРµ Р·Р°РјРµС‡Р°РЅРёРµ РІ РєРѕРЅС†Рµ РѕС‚СЂРµС†РµРЅР·РёСЂРѕРІР°РЅРЅРѕР№ СЃС‚Р°С‚СЊРё
 \newcommand\typeFINALREVIEWERNOTE{%
     \par\noindent
     \begin{minipage}{\columnwidth}\parindent=3.5ex
         \par\bigskip\hrule\vskip1pt\hrule\nopagebreak\bigskip
-        \ruseng{Всего сделано замечаний}{Total reviewers' notes}: \themmroReviewerNote.
+        \ruseng{Р’СЃРµРіРѕ СЃРґРµР»Р°РЅРѕ Р·Р°РјРµС‡Р°РЅРёР№}{Total reviewers' notes}: \themmroReviewerNote.
         \par\medskip
-        % подсчёт числа авторов для генерации текста обращения
+        % РїРѕРґСЃС‡С‘С‚ С‡РёСЃР»Р° Р°РІС‚РѕСЂРѕРІ РґР»СЏ РіРµРЅРµСЂР°С†РёРё С‚РµРєСЃС‚Р° РѕР±СЂР°С‰РµРЅРёСЏ
         \setcounter{@authors@no}{0}%
         \@for\@indx@elem:=\@author\do{%
             \addtocounter{@authors@no}{1}%
         }%
         \ifthenelse{\equal{\the@authors@no}{1}}%
-            {\ruseng{Уважаемый автор!}{Dear author!}}%
-            {\ruseng{Уважаемые авторы!}{Dear authors!}}%
+            {\ruseng{РЈРІР°Р¶Р°РµРјС‹Р№ Р°РІС‚РѕСЂ!}{Dear author!}}%
+            {\ruseng{РЈРІР°Р¶Р°РµРјС‹Рµ Р°РІС‚РѕСЂС‹!}{Dear authors!}}%
         \par\medskip
         \ruseng{%
-            Данная версия Вашей статьи может содержать редакторские правки.
-            Если Вы собираетесь вносить свои правки, пожалуйста,
-            редактируйте именно данную версию, а~не~Ваш исходный файл.
+            Р”Р°РЅРЅР°СЏ РІРµСЂСЃРёСЏ Р’Р°С€РµР№ СЃС‚Р°С‚СЊРё РјРѕР¶РµС‚ СЃРѕРґРµСЂР¶Р°С‚СЊ СЂРµРґР°РєС‚РѕСЂСЃРєРёРµ РїСЂР°РІРєРё.
+            Р•СЃР»Рё Р’С‹ СЃРѕР±РёСЂР°РµС‚РµСЃСЊ РІРЅРѕСЃРёС‚СЊ СЃРІРѕРё РїСЂР°РІРєРё, РїРѕР¶Р°Р»СѓР№СЃС‚Р°,
+            СЂРµРґР°РєС‚РёСЂСѓР№С‚Рµ РёРјРµРЅРЅРѕ РґР°РЅРЅСѓСЋ РІРµСЂСЃРёСЋ, Р°~РЅРµ~Р’Р°С€ РёСЃС…РѕРґРЅС‹Р№ С„Р°Р№Р».
             \par
-            При внесении исправлений желательно не пользоваться программами,
-            которые самопроизвольно изменяют \LaTeX овскую разметку,
-            так как это может испортить работу наших корректоров.
-            Используйте текстовые редакторы TeXnicCenter, Texmaker, WinEdt, и~др.
+            РџСЂРё РІРЅРµСЃРµРЅРёРё РёСЃРїСЂР°РІР»РµРЅРёР№ Р¶РµР»Р°С‚РµР»СЊРЅРѕ РЅРµ РїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РїСЂРѕРіСЂР°РјРјР°РјРё,
+            РєРѕС‚РѕСЂС‹Рµ СЃР°РјРѕРїСЂРѕРёР·РІРѕР»СЊРЅРѕ РёР·РјРµРЅСЏСЋС‚ \LaTeX РѕРІСЃРєСѓСЋ СЂР°Р·РјРµС‚РєСѓ,
+            С‚Р°Рє РєР°Рє СЌС‚Рѕ РјРѕР¶РµС‚ РёСЃРїРѕСЂС‚РёС‚СЊ СЂР°Р±РѕС‚Сѓ РЅР°С€РёС… РєРѕСЂСЂРµРєС‚РѕСЂРѕРІ.
+            РСЃРїРѕР»СЊР·СѓР№С‚Рµ С‚РµРєСЃС‚РѕРІС‹Рµ СЂРµРґР°РєС‚РѕСЂС‹ TeXnicCenter, Texmaker, WinEdt, Рё~РґСЂ.
             \par
-            Рецензенты могли вставлять свои замечания прямо в~текст статьи
-            с~помощью команды \texttt{\char"5C REVIEWERNOTE}.
-            Убедительная просьба~--- не~удалять их из~документа.
-            При печати сборника они не~будут видны.
-            При необходимости Вы можете вставить ответ командой
-            \mbox{\texttt{\char"5C REPLY\{}\textit{текст ответа}\texttt{\}}}
-            Однако авторам рекомендуется использовать эту возможность лишь в~крайних случаях.
-            Если рецензент понял Вас неправильно,
-            то~это скорее повод улучшить изложение, чем вступать в~полемику с~рецензентом.
-            Кроме того, нет гарантии, что рецензент сможет прочитать Ваш ответ.
-            Авторам также рекомендуется внимательнее отнестись к~исправлениям
-            и~не~вносить их второпях~--- это может только ухудшить статью.
+            Р РµС†РµРЅР·РµРЅС‚С‹ РјРѕРіР»Рё РІСЃС‚Р°РІР»СЏС‚СЊ СЃРІРѕРё Р·Р°РјРµС‡Р°РЅРёСЏ РїСЂСЏРјРѕ РІ~С‚РµРєСЃС‚ СЃС‚Р°С‚СЊРё
+            СЃ~РїРѕРјРѕС‰СЊСЋ РєРѕРјР°РЅРґС‹ \texttt{\char"5C REVIEWERNOTE}.
+            РЈР±РµРґРёС‚РµР»СЊРЅР°СЏ РїСЂРѕСЃСЊР±Р°~--- РЅРµ~СѓРґР°Р»СЏС‚СЊ РёС… РёР·~РґРѕРєСѓРјРµРЅС‚Р°.
+            РџСЂРё РїРµС‡Р°С‚Рё СЃР±РѕСЂРЅРёРєР° РѕРЅРё РЅРµ~Р±СѓРґСѓС‚ РІРёРґРЅС‹.
+            РџСЂРё РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё Р’С‹ РјРѕР¶РµС‚Рµ РІСЃС‚Р°РІРёС‚СЊ РѕС‚РІРµС‚ РєРѕРјР°РЅРґРѕР№
+            \mbox{\texttt{\char"5C REPLY\{}\textit{С‚РµРєСЃС‚ РѕС‚РІРµС‚Р°}\texttt{\}}}
+            РћРґРЅР°РєРѕ Р°РІС‚РѕСЂР°Рј СЂРµРєРѕРјРµРЅРґСѓРµС‚СЃСЏ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЌС‚Сѓ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ Р»РёС€СЊ РІ~РєСЂР°Р№РЅРёС… СЃР»СѓС‡Р°СЏС….
+            Р•СЃР»Рё СЂРµС†РµРЅР·РµРЅС‚ РїРѕРЅСЏР» Р’Р°СЃ РЅРµРїСЂР°РІРёР»СЊРЅРѕ,
+            С‚Рѕ~СЌС‚Рѕ СЃРєРѕСЂРµРµ РїРѕРІРѕРґ СѓР»СѓС‡С€РёС‚СЊ РёР·Р»РѕР¶РµРЅРёРµ, С‡РµРј РІСЃС‚СѓРїР°С‚СЊ РІ~РїРѕР»РµРјРёРєСѓ СЃ~СЂРµС†РµРЅР·РµРЅС‚РѕРј.
+            РљСЂРѕРјРµ С‚РѕРіРѕ, РЅРµС‚ РіР°СЂР°РЅС‚РёРё, С‡С‚Рѕ СЂРµС†РµРЅР·РµРЅС‚ СЃРјРѕР¶РµС‚ РїСЂРѕС‡РёС‚Р°С‚СЊ Р’Р°С€ РѕС‚РІРµС‚.
+            РђРІС‚РѕСЂР°Рј С‚Р°РєР¶Рµ СЂРµРєРѕРјРµРЅРґСѓРµС‚СЃСЏ РІРЅРёРјР°С‚РµР»СЊРЅРµРµ РѕС‚РЅРµСЃС‚РёСЃСЊ Рє~РёСЃРїСЂР°РІР»РµРЅРёСЏРј
+            Рё~РЅРµ~РІРЅРѕСЃРёС‚СЊ РёС… РІС‚РѕСЂРѕРїСЏС…~--- СЌС‚Рѕ РјРѕР¶РµС‚ С‚РѕР»СЊРєРѕ СѓС…СѓРґС€РёС‚СЊ СЃС‚Р°С‚СЊСЋ.
             %\par
-            Чтобы распечатать статью, скрыв замечания и~ответы,
-            включите в~преамбулу команду
+            Р§С‚РѕР±С‹ СЂР°СЃРїРµС‡Р°С‚Р°С‚СЊ СЃС‚Р°С‚СЊСЋ, СЃРєСЂС‹РІ Р·Р°РјРµС‡Р°РЅРёСЏ Рё~РѕС‚РІРµС‚С‹,
+            РІРєР»СЋС‡РёС‚Рµ РІ~РїСЂРµР°РјР±СѓР»Сѓ РєРѕРјР°РЅРґСѓ
             \texttt{\char"5C NOREVIEWERNOTES}.%
         }{%
             This version of your paper contains a~blue pencil.
@@ -1024,42 +1268,42 @@
 }
 \newcommand\FINALREVIEWERNOTE{%
     \refstepcounter{mmroFinalReviewerNotes}%
-    \ifthenelse{\equal{\@paper@name}{\jobname}}{% если печать отдельного файла
+    \ifthenelse{\equal{\@paper@name}{\jobname}}{% РµСЃР»Рё РїРµС‡Р°С‚СЊ РѕС‚РґРµР»СЊРЅРѕРіРѕ С„Р°Р№Р»Р°
         \@type@FINALREVIEWERNOTE
     }{}%
 }
 
-% Последний срок отправки доработанной версии
-\newcommand\typeDEADLINE{\ruseng{1~июля 2012~года}{July~1, 2012}}
+% РџРѕСЃР»РµРґРЅРёР№ СЃСЂРѕРє РѕС‚РїСЂР°РІРєРё РґРѕСЂР°Р±РѕС‚Р°РЅРЅРѕР№ РІРµСЂСЃРёРё
+\newcommand\typeDEADLINE{\ruseng{1~РёСЋР»СЏ 2012~РіРѕРґР°}{July~1, 2012}}
 
-% Текст предупреждения об автогенерируемом тексте
+% РўРµРєСЃС‚ РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёСЏ РѕР± Р°РІС‚РѕРіРµРЅРµСЂРёСЂСѓРµРјРѕРј С‚РµРєСЃС‚Рµ
 \newcommand\typeAUTOWARN[1]{%
     \noindent\vskip-1.7ex
     {%\centering%\footnotesize
         \ruseng{%
-            Весь последующий текст выводится автоматически,
-            согласно одному из трёх возможных решений Программного комитета:
-            принять, отдать~на~доработку, либо отвергнуть.
+            Р’РµСЃСЊ РїРѕСЃР»РµРґСѓСЋС‰РёР№ С‚РµРєСЃС‚ РІС‹РІРѕРґРёС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё,
+            СЃРѕРіР»Р°СЃРЅРѕ РѕРґРЅРѕРјСѓ РёР· С‚СЂС‘С… РІРѕР·РјРѕР¶РЅС‹С… СЂРµС€РµРЅРёР№ РџСЂРѕРіСЂР°РјРјРЅРѕРіРѕ РєРѕРјРёС‚РµС‚Р°:
+            РїСЂРёРЅСЏС‚СЊ, РѕС‚РґР°С‚СЊ~РЅР°~РґРѕСЂР°Р±РѕС‚РєСѓ, Р»РёР±Рѕ РѕС‚РІРµСЂРіРЅСѓС‚СЊ.
         }{%
             Further text was generated automatically
             according to one of three possible decisions of the Program Committee:
             accept, amend, or reject.
         }%
     \par
-    Данная статья \textbf{#1}.
+    Р”Р°РЅРЅР°СЏ СЃС‚Р°С‚СЊСЏ \textbf{#1}.
     \par\smallskip\hrule}%
     \bigskip
 }
 
-% Три типа итоговых замечаний с~окончательным решением о принятии/доработке/отказе
+% РўСЂРё С‚РёРїР° РёС‚РѕРіРѕРІС‹С… Р·Р°РјРµС‡Р°РЅРёР№ СЃ~РѕРєРѕРЅС‡Р°С‚РµР»СЊРЅС‹Рј СЂРµС€РµРЅРёРµРј Рѕ РїСЂРёРЅСЏС‚РёРё/РґРѕСЂР°Р±РѕС‚РєРµ/РѕС‚РєР°Р·Рµ
 \newcommand\typeACCEPTNOTE{\par
-    %\typeAUTOWARN{принята}%
+    %\typeAUTOWARN{РїСЂРёРЅСЏС‚Р°}%
     {\itshape\bfseries
         \LANGNOTE\ruseng{%
-            Статья прошла рецензирование, корректуру и~принята к~публикации в~сборнике.
-            Вы~можете подать доработанную версию до \typeDEADLINE\ включительно (чем раньше, тем лучше).
-            Если оргкомитет не получит от Вас доработанную версию до указанного срока,
-            то~будет опубликована данная версия.
+            РЎС‚Р°С‚СЊСЏ РїСЂРѕС€Р»Р° СЂРµС†РµРЅР·РёСЂРѕРІР°РЅРёРµ, РєРѕСЂСЂРµРєС‚СѓСЂСѓ Рё~РїСЂРёРЅСЏС‚Р° Рє~РїСѓР±Р»РёРєР°С†РёРё РІ~СЃР±РѕСЂРЅРёРєРµ.
+            Р’С‹~РјРѕР¶РµС‚Рµ РїРѕРґР°С‚СЊ РґРѕСЂР°Р±РѕС‚Р°РЅРЅСѓСЋ РІРµСЂСЃРёСЋ РґРѕ \typeDEADLINE\ РІРєР»СЋС‡РёС‚РµР»СЊРЅРѕ (С‡РµРј СЂР°РЅСЊС€Рµ, С‚РµРј Р»СѓС‡С€Рµ).
+            Р•СЃР»Рё РѕСЂРіРєРѕРјРёС‚РµС‚ РЅРµ РїРѕР»СѓС‡РёС‚ РѕС‚ Р’Р°СЃ РґРѕСЂР°Р±РѕС‚Р°РЅРЅСѓСЋ РІРµСЂСЃРёСЋ РґРѕ СѓРєР°Р·Р°РЅРЅРѕРіРѕ СЃСЂРѕРєР°,
+            С‚Рѕ~Р±СѓРґРµС‚ РѕРїСѓР±Р»РёРєРѕРІР°РЅР° РґР°РЅРЅР°СЏ РІРµСЂСЃРёСЏ.
         }{%
             The paper has been passed the phases of reviewing and proofreading.
             The paper is accepted.
@@ -1070,13 +1314,13 @@
     }\par
 }
 \newcommand\typeAMENDNOTE{\par
-    %\typeAUTOWARN{отдана на~доработку}%
+    %\typeAUTOWARN{РѕС‚РґР°РЅР° РЅР°~РґРѕСЂР°Р±РѕС‚РєСѓ}%
     {\itshape\bfseries
         \LANGNOTE\ruseng{%
-            Статья может быть принята к~публикации в~сборнике только при условии её существенной доработки.
-            Вы~можете подать доработанную версию до \typeDEADLINE\ включительно (чем раньше, тем лучше).
-            Если оргкомитет не получит от Вас доработанную версию до указанного срока,
-            то~статья не будет опубликована.
+            РЎС‚Р°С‚СЊСЏ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСЂРёРЅСЏС‚Р° Рє~РїСѓР±Р»РёРєР°С†РёРё РІ~СЃР±РѕСЂРЅРёРєРµ С‚РѕР»СЊРєРѕ РїСЂРё СѓСЃР»РѕРІРёРё РµС‘ СЃСѓС‰РµСЃС‚РІРµРЅРЅРѕР№ РґРѕСЂР°Р±РѕС‚РєРё.
+            Р’С‹~РјРѕР¶РµС‚Рµ РїРѕРґР°С‚СЊ РґРѕСЂР°Р±РѕС‚Р°РЅРЅСѓСЋ РІРµСЂСЃРёСЋ РґРѕ \typeDEADLINE\ РІРєР»СЋС‡РёС‚РµР»СЊРЅРѕ (С‡РµРј СЂР°РЅСЊС€Рµ, С‚РµРј Р»СѓС‡С€Рµ).
+            Р•СЃР»Рё РѕСЂРіРєРѕРјРёС‚РµС‚ РЅРµ РїРѕР»СѓС‡РёС‚ РѕС‚ Р’Р°СЃ РґРѕСЂР°Р±РѕС‚Р°РЅРЅСѓСЋ РІРµСЂСЃРёСЋ РґРѕ СѓРєР°Р·Р°РЅРЅРѕРіРѕ СЃСЂРѕРєР°,
+            С‚Рѕ~СЃС‚Р°С‚СЊСЏ РЅРµ Р±СѓРґРµС‚ РѕРїСѓР±Р»РёРєРѕРІР°РЅР°.
         }{%
             The paper has been passed the phases of reviewing and proofreading.
             The paper may be accepted only after Your amendment (see reviewers' notes in the text).
@@ -1086,13 +1330,13 @@
     }\par
 }
 \newcommand\typeREJECTNOTE{\par
-    %\typeAUTOWARN{отвергнута}%
+    %\typeAUTOWARN{РѕС‚РІРµСЂРіРЅСѓС‚Р°}%
     {\itshape\bfseries
         \LANGNOTE\ruseng{%
-            Статья не~может быть принята к~публикации в~сборнике.
-            Вы~можете подать полностью переработанную версию статьи до \typeDEADLINE\ включительно (чем раньше, тем лучше).
-            Если оргкомитет не получит от Вас новую версию до указанного срока,
-            то~статья не будет опубликована.
+            РЎС‚Р°С‚СЊСЏ РЅРµ~РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСЂРёРЅСЏС‚Р° Рє~РїСѓР±Р»РёРєР°С†РёРё РІ~СЃР±РѕСЂРЅРёРєРµ.
+            Р’С‹~РјРѕР¶РµС‚Рµ РїРѕРґР°С‚СЊ РїРѕР»РЅРѕСЃС‚СЊСЋ РїРµСЂРµСЂР°Р±РѕС‚Р°РЅРЅСѓСЋ РІРµСЂСЃРёСЋ СЃС‚Р°С‚СЊРё РґРѕ \typeDEADLINE\ РІРєР»СЋС‡РёС‚РµР»СЊРЅРѕ (С‡РµРј СЂР°РЅСЊС€Рµ, С‚РµРј Р»СѓС‡С€Рµ).
+            Р•СЃР»Рё РѕСЂРіРєРѕРјРёС‚РµС‚ РЅРµ РїРѕР»СѓС‡РёС‚ РѕС‚ Р’Р°СЃ РЅРѕРІСѓСЋ РІРµСЂСЃРёСЋ РґРѕ СѓРєР°Р·Р°РЅРЅРѕРіРѕ СЃСЂРѕРєР°,
+            С‚Рѕ~СЃС‚Р°С‚СЊСЏ РЅРµ Р±СѓРґРµС‚ РѕРїСѓР±Р»РёРєРѕРІР°РЅР°.
         }{%
             The paper is rejected.
             Nevertheless, You can make changes and submit your final version
@@ -1104,19 +1348,19 @@
 
 \newcommand\ACCEPTNOTE{%
     \refstepcounter{mmroFinalReviewerNotes}%
-    \ifthenelse{\equal{\@paper@name}{\jobname}}{% если печать отдельного файла
+    \ifthenelse{\equal{\@paper@name}{\jobname}}{% РµСЃР»Рё РїРµС‡Р°С‚СЊ РѕС‚РґРµР»СЊРЅРѕРіРѕ С„Р°Р№Р»Р°
         \@type@ACCEPTNOTE
     }{}%
 }
 \newcommand\AMENDNOTE{%
     \refstepcounter{mmroFinalReviewerNotes}%
-    \ifthenelse{\equal{\@paper@name}{\jobname}}{% если печать отдельного файла
+    \ifthenelse{\equal{\@paper@name}{\jobname}}{% РµСЃР»Рё РїРµС‡Р°С‚СЊ РѕС‚РґРµР»СЊРЅРѕРіРѕ С„Р°Р№Р»Р°
         \@type@AMENDNOTE
     }{}%
 }
 \newcommand\REJECTNOTE{%
     \refstepcounter{mmroFinalReviewerNotes}%
-    \ifthenelse{\equal{\@paper@name}{\jobname}}{% если печать отдельного файла
+    \ifthenelse{\equal{\@paper@name}{\jobname}}{% РµСЃР»Рё РїРµС‡Р°С‚СЊ РѕС‚РґРµР»СЊРЅРѕРіРѕ С„Р°Р№Р»Р°
         \@type@REJECTNOTE
     }{}%
 }
@@ -1128,7 +1372,7 @@
 \newcommand\@type@AMENDNOTE{\par\bigskip\hrule\nopagebreak\bigskip\typeAMENDNOTE\typeFINALREVIEWERNOTE}
 \newcommand\@type@REJECTNOTE{\par\bigskip\hrule\nopagebreak\bigskip\typeREJECTNOTE\typeFINALREVIEWERNOTE}
 
-% Отмена вывода всех рецензентских замечаний
+% РћС‚РјРµРЅР° РІС‹РІРѕРґР° РІСЃРµС… СЂРµС†РµРЅР·РµРЅС‚СЃРєРёС… Р·Р°РјРµС‡Р°РЅРёР№
 \newcommand\NOREVIEWERNOTES{%
     \renewcommand\@type@REVIEWERNOTE[1]{\gobblespace}
     \renewcommand\@type@REPLY[1]{\gobblespace}
@@ -1138,35 +1382,35 @@
     \renewcommand\@type@REJECTNOTE{\gobblespace}
 }
 
-% Полная статистика по всему сборнику
+% РџРѕР»РЅР°СЏ СЃС‚Р°С‚РёСЃС‚РёРєР° РїРѕ РІСЃРµРјСѓ СЃР±РѕСЂРЅРёРєСѓ
 \newcommand\@type@FINALSTAT{%
     \newpage\chaptercode{}\Russian
     %\bigskip\hrule\vskip1pt\hrule height2pt\bigskip
-    {\normalfont\Large\sffamily\bfseries Итоговая статистика статей}
+    {\normalfont\Large\sffamily\bfseries РС‚РѕРіРѕРІР°СЏ СЃС‚Р°С‚РёСЃС‚РёРєР° СЃС‚Р°С‚РµР№}
     \vskip2em
     \par
-    Всего подано статей: \themmroTotal.
+    Р’СЃРµРіРѕ РїРѕРґР°РЅРѕ СЃС‚Р°С‚РµР№: \themmroTotal.
     \par
-    Статей, прошедших корректуру: \themmroCorrected.
+    РЎС‚Р°С‚РµР№, РїСЂРѕС€РµРґС€РёС… РєРѕСЂСЂРµРєС‚СѓСЂСѓ: \themmroCorrected.
     \\\par
-    Статей, прошедших рецензирование: \themmroReviewed.
+    РЎС‚Р°С‚РµР№, РїСЂРѕС€РµРґС€РёС… СЂРµС†РµРЅР·РёСЂРѕРІР°РЅРёРµ: \themmroReviewed.
     \par
-    Всего статей c \texttt{\char"5C REVIEWERNOTE}: \themmroTotalReviewedPapers\
-    (всего сделано замечаний: \themmroTotalReviewerNotes).
+    Р’СЃРµРіРѕ СЃС‚Р°С‚РµР№ c \texttt{\char"5C REVIEWERNOTE}: \themmroTotalReviewedPapers\
+    (РІСЃРµРіРѕ СЃРґРµР»Р°РЅРѕ Р·Р°РјРµС‡Р°РЅРёР№: \themmroTotalReviewerNotes).
     \par
-    Всего статей с \texttt{\char"5C FINALREVIEWERNOTE}: \themmroFinalReviewerNotes.
+    Р’СЃРµРіРѕ СЃС‚Р°С‚РµР№ СЃ \texttt{\char"5C FINALREVIEWERNOTE}: \themmroFinalReviewerNotes.
     \\\par
-    Статей, отмеченных как принятых в~печать: \themmroAccepted.
+    РЎС‚Р°С‚РµР№, РѕС‚РјРµС‡РµРЅРЅС‹С… РєР°Рє РїСЂРёРЅСЏС‚С‹С… РІ~РїРµС‡Р°С‚СЊ: \themmroAccepted.
     \par
-    Статей, которые желательно доработать: \themmroMayBeCompleted.
+    РЎС‚Р°С‚РµР№, РєРѕС‚РѕСЂС‹Рµ Р¶РµР»Р°С‚РµР»СЊРЅРѕ РґРѕСЂР°Р±РѕС‚Р°С‚СЊ: \themmroMayBeCompleted.
     \par
-    Статей, которые не могут быть опубликованы без доработки: \themmroMustBeCompleted.
+    РЎС‚Р°С‚РµР№, РєРѕС‚РѕСЂС‹Рµ РЅРµ РјРѕРіСѓС‚ Р±С‹С‚СЊ РѕРїСѓР±Р»РёРєРѕРІР°РЅС‹ Р±РµР· РґРѕСЂР°Р±РѕС‚РєРё: \themmroMustBeCompleted.
     \par
-    Статей, которые уже точно отброшены: \themmroRejected.
+    РЎС‚Р°С‚РµР№, РєРѕС‚РѕСЂС‹Рµ СѓР¶Рµ С‚РѕС‡РЅРѕ РѕС‚Р±СЂРѕС€РµРЅС‹: \themmroRejected.
     \\\par
-    Статей в~этой версии сборника: \thePaperNo.
+    РЎС‚Р°С‚РµР№ РІ~СЌС‚РѕР№ РІРµСЂСЃРёРё СЃР±РѕСЂРЅРёРєР°: \thePaperNo.
     \par
-    Всего иллюстраций в~этой версии сборника: \thePictureNo.
+    Р’СЃРµРіРѕ РёР»Р»СЋСЃС‚СЂР°С†РёР№ РІ~СЌС‚РѕР№ РІРµСЂСЃРёРё СЃР±РѕСЂРЅРёРєР°: \thePictureNo.
 }
 % INTERFACE
 \newcommand\FINALSTAT{%
@@ -1184,37 +1428,37 @@
 %\renewcommand\TODO[1]{\gobblespace}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Для включения графиков пакетом graphicx
+% Р”Р»СЏ РІРєР»СЋС‡РµРЅРёСЏ РіСЂР°С„РёРєРѕРІ РїР°РєРµС‚РѕРј graphicx
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \DeclareGraphicsRule{.wmf}{bmp}{}{}
 \DeclareGraphicsRule{.emf}{bmp}{}{}
 \DeclareGraphicsRule{.bmp}{bmp}{}{}
 \DeclareGraphicsRule{.png}{bmp}{}{}
-% Для подписей на рисунках, вставляемых includegraphics
+% Р”Р»СЏ РїРѕРґРїРёСЃРµР№ РЅР° СЂРёСЃСѓРЅРєР°С…, РІСЃС‚Р°РІР»СЏРµРјС‹С… includegraphics
 \def\XYtext(#1,#2)#3{\rlap{\kern#1\lower-#2\hbox{#3}}}
 
-% Переопределение вставки графики
+% РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РІСЃС‚Р°РІРєРё РіСЂР°С„РёРєРё
 \newcounter{PictureNo}
 \let\IncludeGraphics=\includegraphics
 \renewcommand\includegraphics[2][]{%
     \IncludeGraphics[#1]{#2}%
     \refstepcounter{PictureNo}%
-    % если идёт вёрстка сборника, включить картинку в архивы
+    % РµСЃР»Рё РёРґС‘С‚ РІС‘СЂСЃС‚РєР° СЃР±РѕСЂРЅРёРєР°, РІРєР»СЋС‡РёС‚СЊ РєР°СЂС‚РёРЅРєСѓ РІ Р°СЂС…РёРІС‹
     \ifthenelse{\equal{\@paper@name}{\jobname}}%
         {}%
         {\@include@graphics@file{#2}}%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Плавающие иллюстрации
+% РџР»Р°РІР°СЋС‰РёРµ РёР»Р»СЋСЃС‚СЂР°С†РёРё
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \setcounter{topnumber}{9}
 \setcounter{totalnumber}{9}
 \renewcommand\topfraction{1.0}
 \renewcommand\textfraction{0.0}
-\renewcommand\floatpagefraction{0.01} % float-страниц быть вообще не должно - это чтобы их лучше видеть ;)
+\renewcommand\floatpagefraction{0.01} % float-СЃС‚СЂР°РЅРёС† Р±С‹С‚СЊ РІРѕРѕР±С‰Рµ РЅРµ РґРѕР»Р¶РЅРѕ - СЌС‚Рѕ С‡С‚РѕР±С‹ РёС… Р»СѓС‡С€Рµ РІРёРґРµС‚СЊ ;)
 \setlength\floatsep{2ex}
 \setlength\textfloatsep{2.5ex}
 \setlength\intextsep{2.5ex}
@@ -1223,14 +1467,14 @@
 %\def\@caption@left@right@skip{\leftskip=3.5ex\rightskip=3.5ex}
 \def\@caption@left@right@skip{\leftskip=0ex\rightskip=0ex}
 \def\nocaptionskips{\def\@caption@left@right@skip{}}
-\def\fnum@figure{\figurename\:\thefigure} %% нерастяжимый тонкий пробел между Рис. и номером рисунка
-\def\fnum@table{\tablename\enskip\thetable} %% нерастяжимый тонкий пробел между Таблица и номером таблицы
+\def\fnum@figure{\figurename\:\thefigure} %% РЅРµСЂР°СЃС‚СЏР¶РёРјС‹Р№ С‚РѕРЅРєРёР№ РїСЂРѕР±РµР» РјРµР¶РґСѓ Р РёСЃ. Рё РЅРѕРјРµСЂРѕРј СЂРёСЃСѓРЅРєР°
+\def\fnum@table{\tablename\:\thetable} %% РЅРµСЂР°СЃС‚СЏР¶РёРјС‹Р№ С‚РѕРЅРєРёР№ РїСЂРѕР±РµР» РјРµР¶РґСѓ РўР°Р±Р»РёС†Р° Рё РЅРѕРјРµСЂРѕРј С‚Р°Р±Р»РёС†С‹
 
 \renewcommand\@makecaption[2]{%
     \vskip\abovecaptionskip
-    \sbox\@tempboxa{\small\textbf{#1.} #2}%
+    \sbox\@tempboxa{\small\textbf{#1} #2}%
     \ifdim\wd\@tempboxa >\hsize
-        {\@caption@left@right@skip\small\textbf{#1.} #2\par}%
+        {\@caption@left@right@skip\small\textbf{#1} #2\par}%
     \else
         \global\@minipagefalse
         \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
@@ -1239,7 +1483,7 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Некоторые переопределения для унификации математики
+% РќРµРєРѕС‚РѕСЂС‹Рµ РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёСЏ РґР»СЏ СѓРЅРёС„РёРєР°С†РёРё РјР°С‚РµРјР°С‚РёРєРё
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \renewcommand{\geq}{\geqslant}
@@ -1258,8 +1502,8 @@
 %\def\ubar#1{\smash[b]{\underset{\rule[0.8ex]{3pt}{0.3pt}}#1}}
 \renewcommand{\complement}{\mathsf{C}}
 \newcommand{\T}{^{\text{\tiny\sffamily\upshape\mdseries T}}}
-%\newcommand{\T}{^{\textsf{\upshape т}}}
-%\newcommand{\T}{^{\text{\rm т}}}
+%\newcommand{\T}{^{\textsf{\upshape С‚}}}
+%\newcommand{\T}{^{\text{\rm С‚}}}
 
 \newcommand\myop[1]{\mathop{\operator@font #1}\nolimits}
 \newcommand\mylim[1]{\mathop{\operator@font #1}\limits}
@@ -1289,7 +1533,7 @@
 \newcommand\sign{\mylim{sign}}
 \newcommand\const{\myop{const}}
 
-% теория вероятностей
+% С‚РµРѕСЂРёСЏ РІРµСЂРѕСЏС‚РЅРѕСЃС‚РµР№
 \newcommand{\erf}{\myop{erf}}
 \newcommand{\Expect}{\mathsf{E}}
 \newcommand{\Var}{\mathsf{D}}
@@ -1298,25 +1542,25 @@
 \newcommand\Normal{\mathcal{N}}
 \newcommand{\cond}{\mspace{3mu}{|}\mspace{3mu}}
 
-% теория вычислительной сложности
-% шрифт для классов сложности
+% С‚РµРѕСЂРёСЏ РІС‹С‡РёСЃР»РёС‚РµР»СЊРЅРѕР№ СЃР»РѕР¶РЅРѕСЃС‚Рё
+% С€СЂРёС„С‚ РґР»СЏ РєР»Р°СЃСЃРѕРІ СЃР»РѕР¶РЅРѕСЃС‚Рё
 %\def\CCfont#1{\ifmmode{\mathsf{#1}}\else\mbox{\textsf{#1}}\fi}
 \def\CCfont#1{\ifmmode\mbox{\textsf{#1}}\else\mbox{\rm\textsf{#1}}\fi}
-% шрифт для названий задач
+% С€СЂРёС„С‚ РґР»СЏ РЅР°Р·РІР°РЅРёР№ Р·Р°РґР°С‡
 \def\CPfont#1{\ifmmode\mbox{\textsc{#1}}\else\mbox{\rm\textsc{#1}}\fi}
-% классы сложности
+% РєР»Р°СЃСЃС‹ СЃР»РѕР¶РЅРѕСЃС‚Рё
 \def\P{\CCfont{P}}
 \def\NP{\CCfont{NP}}
 \def\DTIME{\CCfont{DTIME}}
 \def\MaxSNP{\CCfont{Max-SNP}}
 \def\Apx{\CCfont{Apx}}
-% задачи
+% Р·Р°РґР°С‡Рё
 \def\PC{\CPfont{PC}}
 \def\MinPC{\CPfont{MinPC}}
 \def\threeSAT{\CPfont{3SAT}}
 \def\GapSAT{\CPfont{Gap-3SAT}}
 
-% множества
+% РјРЅРѕР¶РµСЃС‚РІР°
 \def\NN{\mathbb{N}}
 \def\ZZ{\mathbb{Z}}
 \def\QQ{\mathbb{Q}}
@@ -1339,24 +1583,25 @@
 %\def\fR{\mathfrak{R}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Перечни
+% РџРµСЂРµС‡РЅРё
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Нумерованный перечень со скобками
+
+% РќСѓРјРµСЂРѕРІР°РЅРЅС‹Р№ РїРµСЂРµС‡РµРЅСЊ СЃРѕ СЃРєРѕР±РєР°РјРё
 \def\afterlabel#1{\renewcommand\labelenumi{\theenumi #1}}
 \def\aroundlabel#1#2{\renewcommand\labelenumi{#1\theenumi #2}}
 \newenvironment{enumerate*}
 {%
     \begingroup
     \renewcommand{\@listi}{%
-        \topsep=\smallskipamount % вокруг списка
-        \parsep=0pt% между абзацами внутри пункта
-        \parskip=0pt% между абзацами
-        \itemsep=0pt% между пунктами
-        \itemindent=0ex% абзацный выступ
-        \labelsep=1.5ex% расстояние до метки
-        \leftmargin=7ex% отступ слева
-        \rightmargin=0pt} % отступ справа
+        \topsep=\smallskipamount % РІРѕРєСЂСѓРі СЃРїРёСЃРєР°
+        \parsep=0pt% РјРµР¶РґСѓ Р°Р±Р·Р°С†Р°РјРё РІРЅСѓС‚СЂРё РїСѓРЅРєС‚Р°
+        \parskip=0pt% РјРµР¶РґСѓ Р°Р±Р·Р°С†Р°РјРё
+        \itemsep=0pt% РјРµР¶РґСѓ РїСѓРЅРєС‚Р°РјРё
+        \itemindent=0ex% Р°Р±Р·Р°С†РЅС‹Р№ РІС‹СЃС‚СѓРї
+        \labelsep=1.5ex% СЂР°СЃСЃС‚РѕСЏРЅРёРµ РґРѕ РјРµС‚РєРё
+        \leftmargin=7ex% РѕС‚СЃС‚СѓРї СЃР»РµРІР°
+        \rightmargin=0pt} % РѕС‚СЃС‚СѓРї СЃРїСЂР°РІР°
     \begin{enumerate}%
     \afterlabel)%
 }{%
@@ -1364,103 +1609,106 @@
     \endgroup
 }
 
+%РѕСЃС‚Р°РІР»СЏРµРј РјРµСЃС‚Рѕ РїРѕРґ РІС‚РѕСЂСѓСЋ С†РёС„СЂСѓ РїСЂРё РїРµСЂРµС‡РёСЃР»РµРЅРёРё, РёРЅР°С‡Рµ РІС‹Р»РµР·Р°РµС‚ Р·Р° РіСЂР°РЅРёС†С‹ С‚РµРєСЃС‚Р°
+\setlist[enumerate]{labelindent=1ex, leftmargin=*}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Новые теоремоподобные окружения
+% РќРѕРІС‹Рµ С‚РµРѕСЂРµРјРѕРїРѕРґРѕР±РЅС‹Рµ РѕРєСЂСѓР¶РµРЅРёСЏ
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \theoremstyle{plain}
-% Шаманские притоптывания, чтобы ставить точку после номера теоремы
+% РЁР°РјР°РЅСЃРєРёРµ РїСЂРёС‚РѕРїС‚С‹РІР°РЅРёСЏ, С‡С‚РѕР±С‹ СЃС‚Р°РІРёС‚СЊ С‚РѕС‡РєСѓ РїРѕСЃР»Рµ РЅРѕРјРµСЂР° С‚РµРѕСЂРµРјС‹
 \gdef\th@plain{\normalfont
     \def\@begintheorem##1##2{%
         \item[\hskip\labelsep\theorem@headerfont ##1\ ##2. ]}%
     \def\@opargbegintheorem##1##2##3{%
         \item[\hskip\labelsep\theorem@headerfont ##1\ ##2] {\theorem@headerfont(##3). }}%
 }
-% Теоремы наклонным шрифтом
+% РўРµРѕСЂРµРјС‹ РЅР°РєР»РѕРЅРЅС‹Рј С€СЂРёС„С‚РѕРј
 \theorempreskipamount=\smallskipamount
 \theorempreskipamount=\smallskipamount
 \theorembodyfont{\rmfamily\slshape}
-\newtheorem{Theorem}{\ruseng{Теорема}{Theorem}}
-\newtheorem{Lemma}[Theorem]{\ruseng{Лемма}{Lemma}}
-\newtheorem{State}{\ruseng{Утверждение}{Statement}}
-\newtheorem{Corollary}{\ruseng{Следствие}{Corollary}}
-\newtheorem{Def}{\ruseng{Определение}{Definition}}
-\newtheorem{Definition}[Def]{\ruseng{Определение}{Definition}}
-% Теоремы прямым шрифтом
+\newtheorem{Theorem}{\ruseng{РўРµРѕСЂРµРјР°}{Theorem}}
+\newtheorem{Lemma}[Theorem]{\ruseng{Р›РµРјРјР°}{Lemma}}
+\newtheorem{State}{\ruseng{РЈС‚РІРµСЂР¶РґРµРЅРёРµ}{Statement}}
+\newtheorem{Corollary}{\ruseng{РЎР»РµРґСЃС‚РІРёРµ}{Corollary}}
+\newtheorem{Def}{\ruseng{РћРїСЂРµРґРµР»РµРЅРёРµ}{Definition}}
+\newtheorem{Definition}[Def]{\ruseng{РћРїСЂРµРґРµР»РµРЅРёРµ}{Definition}}
+% РўРµРѕСЂРµРјС‹ РїСЂСЏРјС‹Рј С€СЂРёС„С‚РѕРј
 \theorembodyfont{\rmfamily}
-\newtheorem{Axiom}{\ruseng{Аксиома}{Axiom}}
-\newtheorem{Hypothesis}{\ruseng{Гипотеза}{Hypothesis}}
-\newtheorem{Assumption}{\ruseng{Предположение}{Assumption}}
-\newtheorem{Problem}{\ruseng{Задача}{Problem}}
-\newtheorem{Example}{\ruseng{Пример}{Example}}
-\newtheorem{Fact}{\ruseng{Факт}{Fact}}
-\newtheorem{Remark}{\ruseng{Замечание}{Remark}}
-\newtheorem{Notice}{\ruseng{Замечание}{Notice}}
-\newtheorem{Rule}{\ruseng{Правило}{Rule}}
-\newtheorem{Condition}{\ruseng{Условие}{Condition}}
-% Для доказательств (не рекомендуется в коротких статьях)
+\newtheorem{Axiom}{\ruseng{РђРєСЃРёРѕРјР°}{Axiom}}
+\newtheorem{Hypothesis}{\ruseng{Р“РёРїРѕС‚РµР·Р°}{Hypothesis}}
+\newtheorem{Assumption}{\ruseng{РџСЂРµРґРїРѕР»РѕР¶РµРЅРёРµ}{Assumption}}
+\newtheorem{Problem}{\ruseng{Р—Р°РґР°С‡Р°}{Problem}}
+\newtheorem{Example}{\ruseng{РџСЂРёРјРµСЂ}{Example}}
+\newtheorem{Fact}{\ruseng{Р¤Р°РєС‚}{Fact}}
+\newtheorem{Remark}{\ruseng{Р—Р°РјРµС‡Р°РЅРёРµ}{Remark}}
+\newtheorem{Notice}{\ruseng{Р—Р°РјРµС‡Р°РЅРёРµ}{Notice}}
+\newtheorem{Rule}{\ruseng{РџСЂР°РІРёР»Рѕ}{Rule}}
+\newtheorem{Condition}{\ruseng{РЈСЃР»РѕРІРёРµ}{Condition}}
+% Р”Р»СЏ РґРѕРєР°Р·Р°С‚РµР»СЊСЃС‚РІ (РЅРµ СЂРµРєРѕРјРµРЅРґСѓРµС‚СЃСЏ РІ РєРѕСЂРѕС‚РєРёС… СЃС‚Р°С‚СЊСЏС…)
 \newenvironment{Proof}%
-    {\par\noindent{\bf Доказательство.}}%
+    {\par\noindent{\bf Р”РѕРєР°Р·Р°С‚РµР»СЊСЃС‚РІРѕ.}}%
     {\hfill$\scriptstyle\blacksquare$}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Оформление алгоритмов в пакетах algorithm, algorithmic
+% РћС„РѕСЂРјР»РµРЅРёРµ Р°Р»РіРѕСЂРёС‚РјРѕРІ РІ РїР°РєРµС‚Р°С… algorithm, algorithmic
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% переопределения (русификация) управляющих конструкций:
+% РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёСЏ (СЂСѓСЃРёС„РёРєР°С†РёСЏ) СѓРїСЂР°РІР»СЏСЋС‰РёС… РєРѕРЅСЃС‚СЂСѓРєС†РёР№:
 \newcommand{\algKeyword}[1]{{\bf #1}}
-\renewcommand{\algorithmicrequire}{\rule{0pt}{2.5ex}\algKeyword{\ruseng{Вход:}{Require:}}}
-\renewcommand{\algorithmicensure}{\algKeyword{\ruseng{Выход:}{Ensure:}}}
-\renewcommand{\algorithmicend}{\algKeyword{\ruseng{конец}{end}}}
-\renewcommand{\algorithmicif}{\algKeyword{\ruseng{если}{if}}}
-\renewcommand{\algorithmicthen}{\algKeyword{\ruseng{то}{then}}}
-\renewcommand{\algorithmicelse}{\algKeyword{\ruseng{иначе}{else}}}
+\renewcommand{\algorithmicrequire}{\rule{0pt}{2.5ex}\algKeyword{\ruseng{Р’С…РѕРґ:}{Require:}}}
+\renewcommand{\algorithmicensure}{\algKeyword{\ruseng{Р’С‹С…РѕРґ:}{Ensure:}}}
+\renewcommand{\algorithmicend}{\algKeyword{\ruseng{РєРѕРЅРµС†}{end}}}
+\renewcommand{\algorithmicif}{\algKeyword{\ruseng{РµСЃР»Рё}{if}}}
+\renewcommand{\algorithmicthen}{\algKeyword{\ruseng{С‚Рѕ}{then}}}
+\renewcommand{\algorithmicelse}{\algKeyword{\ruseng{РёРЅР°С‡Рµ}{else}}}
 \renewcommand{\algorithmicelsif}{\algorithmicelse\ \algorithmicif}
 \renewcommand{\algorithmicendif}{\algorithmicend\ \algorithmicif}
-\renewcommand{\algorithmicfor}{\algKeyword{\ruseng{для}{for}}}
-\renewcommand{\algorithmicforall}{\algKeyword{\ruseng{для всех}{for all}}}
+\renewcommand{\algorithmicfor}{\algKeyword{\ruseng{РґР»СЏ}{for}}}
+\renewcommand{\algorithmicforall}{\algKeyword{\ruseng{РґР»СЏ РІСЃРµС…}{for all}}}
 \renewcommand{\algorithmicdo}{}
 \renewcommand{\algorithmicendfor}{\algorithmicend\ \algorithmicfor}
-\renewcommand{\algorithmicwhile}{\algKeyword{\ruseng{пока}{while}}}
+\renewcommand{\algorithmicwhile}{\algKeyword{\ruseng{РїРѕРєР°}{while}}}
 \renewcommand{\algorithmicendwhile}{\algorithmicend\ \algorithmicwhile}
-\renewcommand{\algorithmicloop}{\algKeyword{\ruseng{цикл}{loop}}}
+\renewcommand{\algorithmicloop}{\algKeyword{\ruseng{С†РёРєР»}{loop}}}
 \renewcommand{\algorithmicendloop}{\algorithmicend\ \algorithmicloop}
-\renewcommand{\algorithmicrepeat}{\algKeyword{\ruseng{повторять}{repeat}}}
-\renewcommand{\algorithmicuntil}{\algKeyword{\ruseng{пока}{until}}}
+\renewcommand{\algorithmicrepeat}{\algKeyword{\ruseng{РїРѕРІС‚РѕСЂСЏС‚СЊ}{repeat}}}
+\renewcommand{\algorithmicuntil}{\algKeyword{\ruseng{РїРѕРєР°}{until}}}
 %\renewcommand{\algorithmiccomment}[1]{{\footnotesize // #1}}
 \renewcommand{\algorithmiccomment}[1]{{\quad\sl // #1}}
 
-% Мои дополнительные команды для описания алгоритмов
+% РњРѕРё РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РєРѕРјР°РЅРґС‹ РґР»СЏ РѕРїРёСЃР°РЅРёСЏ Р°Р»РіРѕСЂРёС‚РјРѕРІ
 \newcommand{\Procedure}[1]{{\tt #1}}
 \newcommand{\Proc}[1]{\text{\tt #1}}
 \def\BEGIN{\\[1ex]\hrule\vskip 1ex}
-\def\PARAMS{\renewcommand{\algorithmicrequire}{\algKeyword{\ruseng{Параметры:}{Parameters:}}}\REQUIRE}
+\def\PARAMS{\renewcommand{\algorithmicrequire}{\algKeyword{\ruseng{РџР°СЂР°РјРµС‚СЂС‹:}{Parameters:}}}\REQUIRE}
 \def\END{\vskip 1ex\hrule\vskip 1ex}
-\def\RET{\algKeyword{\ruseng{вернуть}{return}} }
-\def\EXIT{\algKeyword{\ruseng{выход}{exit}}}
+\def\RET{\algKeyword{\ruseng{РІРµСЂРЅСѓС‚СЊ}{return}} }
+\def\EXIT{\algKeyword{\ruseng{РІС‹С…РѕРґ}{exit}}}
 \def\IFTHEN#1{\STATE\algorithmicif\ #1 {\algorithmicthen}}
-\def\PROCEDURE#1{\medskip\STATE\algKeyword{\ruseng{ПРОЦЕДУРА}{PROCEDURE}} \Procedure{#1}}
+\def\PROCEDURE#1{\medskip\STATE\algKeyword{\ruseng{РџР РћР¦Р•Р”РЈР Рђ}{PROCEDURE}} \Procedure{#1}}
 
-% Ещё несколько переопределений для алгоритмов
-\renewcommand{\listalgorithmname}{Список алгоритмов}
-\floatname{algorithm}{\ruseng{Алгоритм}{Algorithm}}
+% Р•С‰С‘ РЅРµСЃРєРѕР»СЊРєРѕ РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёР№ РґР»СЏ Р°Р»РіРѕСЂРёС‚РјРѕРІ
+\renewcommand{\listalgorithmname}{РЎРїРёСЃРѕРє Р°Р»РіРѕСЂРёС‚РјРѕРІ}
+\floatname{algorithm}{\ruseng{РђР»РіРѕСЂРёС‚Рј}{Algorithm}}
 \floatplacement{algorithm}{!t}
 
-% чтобы поставить точечку после номера алгоритма в \caption:
+% С‡С‚РѕР±С‹ РїРѕСЃС‚Р°РІРёС‚СЊ С‚РѕС‡РµС‡РєСѓ РїРѕСЃР»Рµ РЅРѕРјРµСЂР° Р°Р»РіРѕСЂРёС‚РјР° РІ \caption:
 \renewcommand\floatc@ruled[2]{\vskip2pt\textbf{#1.} #2\par}
 
-% чтобы можно было ссылаться на шаги алгоритма
+% С‡С‚РѕР±С‹ РјРѕР¶РЅРѕ Р±С‹Р»Рѕ СЃСЃС‹Р»Р°С‚СЊСЃСЏ РЅР° С€Р°РіРё Р°Р»РіРѕСЂРёС‚РјР°
 \newenvironment{Algorithm}[1][t]%
     {\begin{algorithm}[#1]\begin{algorithmic}[1]%
         \renewcommand{\ALC@it}{%
-            \refstepcounter{ALC@line}% удивительно, почему это не сделал Peter Williams?
+            \refstepcounter{ALC@line}% СѓРґРёРІРёС‚РµР»СЊРЅРѕ, РїРѕС‡РµРјСѓ СЌС‚Рѕ РЅРµ СЃРґРµР»Р°Р» Peter Williams?
             \addtocounter{ALC@rem}{1}%
             \ifthenelse{\equal{\arabic{ALC@rem}}{1}}{\setcounter{ALC@rem}{0}}{}%
             \item}}%
     {\end{algorithmic}\end{algorithm}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Рисование нейронных сетей и диаграмм
+% Р РёСЃРѕРІР°РЅРёРµ РЅРµР№СЂРѕРЅРЅС‹С… СЃРµС‚РµР№ Рё РґРёР°РіСЂР°РјРј
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newenvironment{network}%
@@ -1470,17 +1718,17 @@
 \def\nnLink"#1,#2"#3{\POS"#1"\ar #3 "#2"}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   П Р О Ч Е Е
+%   Рџ Р  Рћ Р§ Р• Р•
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Для таблиц: невидимая вертикальная линейка немного расширяет заголовок
+% Р”Р»СЏ С‚Р°Р±Р»РёС†: РЅРµРІРёРґРёРјР°СЏ РІРµСЂС‚РёРєР°Р»СЊРЅР°СЏ Р»РёРЅРµР№РєР° РЅРµРјРЅРѕРіРѕ СЂР°СЃС€РёСЂСЏРµС‚ Р·Р°РіРѕР»РѕРІРѕРє
 \newcommand{\hstrut}{\rule{0pt}{2.5ex}}
 \newcommand{\headline}{\hline\hstrut}
 
-% Выделение - всегда курсивом
+% Р’С‹РґРµР»РµРЅРёРµ - РІСЃРµРіРґР° РєСѓСЂСЃРёРІРѕРј
 \renewcommand\emph[1]{\textit{#1}}
 
-% Перенос знака операции на следующую строку
+% РџРµСЂРµРЅРѕСЃ Р·РЅР°РєР° РѕРїРµСЂР°С†РёРё РЅР° СЃР»РµРґСѓСЋС‰СѓСЋ СЃС‚СЂРѕРєСѓ
 \newcommand\brop[1]{#1\discretionary{}{\hbox{$\mathsurround=0pt #1$}}{}}
 
 \begingroup
@@ -1502,6 +1750,6 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Для финальной печати убрать замечания рецензентов
+% Р”Р»СЏ С„РёРЅР°Р»СЊРЅРѕР№ РїРµС‡Р°С‚Рё СѓР±СЂР°С‚СЊ Р·Р°РјРµС‡Р°РЅРёСЏ СЂРµС†РµРЅР·РµРЅС‚РѕРІ
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\NOREVIEWERNOTES
