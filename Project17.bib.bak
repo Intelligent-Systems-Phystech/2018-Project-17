@@ -206,4 +206,8 @@
   year    = {2010},
 }
 
+@Manual{neurotychodata,
+  title = {http://wiki.neurotycho.org/Multi-dimensional_Recording},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
