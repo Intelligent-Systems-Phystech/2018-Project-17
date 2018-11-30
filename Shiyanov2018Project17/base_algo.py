@@ -47,13 +47,16 @@ if __name__ == '__main__':
 
     plt.rc('font', family = 'serif', size=16)
 
-    plt.figure(figsize=(30, 15))
+    axes = ['x', 'y', 'z']
+    plt.figure(figsize=(30, 30))
     plt.suptitle("mean squared error is %f" % mean_squared_error(y_pred, y_test), fontsize=20)
     for i in range(3):
         plt.subplot(3, 1, i+1)
+        plt.ylabel(axes[i])
+        plt.xlabel('t')
         plt.plot(y_test[:,i], label='actual result')
         plt.plot(y_pred[:,i], label='prediction')
         plt.grid(True)
         plt.legend(loc='upper right')
 
-    plt.savefig('pls.png')
+    plt.savefig('pls.pdf')
