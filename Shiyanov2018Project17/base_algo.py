@@ -1,61 +1,59 @@
+#!/usr/bin/env python3
+
 import numpy as np
-import os.path
-import urllib.request
-import zipfile
-import glob
+import matplotlib.pyplot as plt
+import os
 
-from io import BytesIO
-from sklearn.cross_decomposition import PLSRegression
-from sklearn.model_selection import train_test_split
 from scipy.io import loadmat
+from sklearn.cross_decomposition import PLSRegression
+from sklearn.metrics import mean_squared_error
 
-def download_ecog(dir):
-    file = '20100802S1_Epidural-ECoG+Food-Tracking_B_Kentaro+Shimoda_mat_ECoG64-Motion6'
-    if os.path.exists(dir):
-        return os.path.join(dir, file)
+def flatten_ndarray(arr):
+    res = []
+    for element in arr:
+        res.append(element.flatten())
 
-    url = 'http://neurotycho.brain.riken.jp/download/2012/%s.zip' % file
-    with urllib.request.urlopen(url) as ECoG:
-        ZippedECoG = zipfile.ZipFile(BytesIO(ECoG.read()))
-        ZippedECoG.extractall(dir)
-
-    return os.path.join(dir, file)
-
-def get_ecog_and_motion(dir):
-    n_ch = len(glob.glob(os.path.join(dir, 'ECoG_ch*.mat')))
-    ECoG = []
-    for ch in range(1, n_ch + 1):
-        ECoGData = loadmat(os.path.join(dir, 'ECoG_ch%d.mat' % ch))
-        ECoGData = ECoGData['ECoGData_ch%d' % ch]
-        ECoG.append(ECoGData[0])
-
-    ECoG = np.array(ECoG)
-
-    Motion = loadmat(os.path.join(dir, 'Motion.mat'))
-    Motion = Motion['MotionData']
-    Motion = Motion[0][0]
-
-    return ECoG, Motion
+    return np.array(res)
 
 def get_data():
-    dir = download_ecog('ECoG')
-    ECoG, Motion = get_ecog_and_motion(dir)
+    # downloading from google drive via python seems to be very complex process and is not the actual 
+    # aim of this document, hence I will just assume, that data is already in current dir
+    # download link: https://drive.google.com/file/d/157SPnufv1VkxazY3H58HHqYJYpZ76Ghw/view?usp=sharing
+    assert os.path.exists('./ECOG_X_test.mat'), 'Current directory should contain train and test mats'
 
-    signals_for_motion = 1000 / 120    # ECoG recorded at 1KHz, while motion at 120Hz
-    X, y = [], []
-    for i in range(Motion.shape[0] - 1):
-        start = int(i * signals_for_motion)
-        X.append(ECoG[:, start:start + int(signals_for_motion)].flatten())
-        y.append(Motion[i+1] - Motion[i])
+    X_test = loadmat('./ECOG_X_test.mat')
+    X_train = loadmat('./ECoG_X_train.mat')
+    y_train = loadmat('./ECoG_Y_train.mat')
+    y_test = loadmat('./ECoG_Y_test.mat')
 
-    return train_test_split(X, y)
+    X_train = X_train['X_train']
+    X_train = flatten_ndarray(X_train)
 
-def main():
-    X_train, X_test, y_train, y_test = get_data()
-    pls = PLSRegression(n_components=2)
-    pls.fit(X_train, y_train)
-    print("test score is", pls.score(X_test, y_test))
+    X_test = X_test['X_hold_out']
+    X_test = flatten_ndarray(X_test)
+
+    y_train = y_train['Y_train']
+    y_test = y_test['Y_hold_out']
+
+    return X_train, X_test, y_train, y_test
+
 
 if __name__ == '__main__':
-    main()
+    X_train, X_test, y_train, y_test = get_data()
 
+    pls = PLSRegression(n_components=2)
+    pls.fit(X_train, y_train)
+    y_pred = pls.predict(X_test)
+
+    plt.rc('font', family = 'serif', size=16)
+
+    plt.figure(figsize=(30, 15))
+    plt.suptitle("mean squared error is %f" % mean_squared_error(y_pred, y_test), fontsize=20)
+    for i in range(3):
+        plt.subplot(3, 1, i+1)
+        plt.plot(y_test[:,i], label='actual result')
+        plt.plot(y_pred[:,i], label='prediction')
+        plt.grid(True)
+        plt.legend(loc='upper right')
+
+    plt.savefig('pls.png')
