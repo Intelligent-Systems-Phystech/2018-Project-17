@@ -25,21 +25,11 @@ def load_mats():
     X_train = loadmat('./ECoG_X_train.mat')
     y_train = loadmat('./ECoG_Y_train.mat')
     y_test = loadmat('./ECoG_Y_test.mat')
-
-    X_train = X_train['X_train']
-    X_test = X_test['X_hold_out']
-    y_train = y_train['Y_train']
-    y_test = y_test['Y_hold_out']
-
-    return X_train, X_test, y_train, y_test
+    return X_train['X_train'], X_test['X_hold_out'], y_train['Y_train'], y_test['Y_hold_out']
 
 def get_data():
     X_train, X_test, y_train, y_test = load_mats()
-
-    X_train = flatten_ndarray(X_train)
-    X_test = flatten_ndarray(X_test)
-
-    return X_train, X_test, y_train, y_test
+    return flatten_ndarray(X_train), flatten_ndarray(X_test), y_train, y_test
 
 
 if __name__ == '__main__':
@@ -49,15 +39,15 @@ if __name__ == '__main__':
     pls.fit(X_train, y_train)
     y_pred = pls.predict(X_test)
 
-    plt.rc('font', family = 'serif', size=16)
+    plt.rc('font', size=30)
 
     axes = ['x', 'y', 'z']
     plt.figure(figsize=(30, 30))
-    plt.suptitle("mean squared error is %f" % mean_squared_error(y_pred, y_test), fontsize=20)
+    plt.suptitle("mean squared error is %f" % mean_squared_error(y_pred, y_test))
     for i in range(3):
         plt.subplot(3, 1, i+1)
-        plt.ylabel(axes[i])
-        plt.xlabel('t')
+        plt.ylabel(axes[i], rotation=0, labelpad=20)
+        plt.xlabel('t', labelpad=20)
         plt.plot(y_test[:,i], label='actual result')
         plt.plot(y_pred[:,i], label='prediction')
         plt.grid(True)
