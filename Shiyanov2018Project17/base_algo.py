@@ -6,7 +6,7 @@ import os
 
 from scipy.io import loadmat
 from sklearn.cross_decomposition import PLSRegression
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
 def flatten_ndarray(arr):
     res = []
@@ -31,26 +31,41 @@ def get_data():
     X_train, X_test, y_train, y_test = load_mats()
     return flatten_ndarray(X_train), flatten_ndarray(X_test), y_train, y_test
 
+def plot_res(y_train, y_pred, outfile):
+    plt.rc('font', size=30)
+    axes = ['$x$', '$y$', '$z$']
+    plt.figure(figsize=(30, 30))
+    for i in range(3):
+        plt.subplot(3, 1, i+1)
+        plt.ylabel(axes[i], rotation=0, labelpad=20)
+        plt.xlabel('$t$', labelpad=20)
+        plt.plot(y_test[0:1000,i], label='наблюдаемое движение', linewidth=3.0)
+        plt.plot(y_pred[0:1000,i], label='предсказание', linewidth=3.0)
+        plt.grid(True)
+        plt.legend(loc='upper right')
+
+    plt.savefig(outfile)
+
+def pls_train_and_predict(n_comps, X_train, y_train, X_test):
+    pls = PLSRegression(n_components=n_comps)
+    pls.fit(X_train, y_train)
+    return pls.predict(X_test)
+
+def test_pls(n_comps, X_train, y_train, X_test, y_test):
+    y_pred = pls_train_and_predict(n_comps, X_train, y_train, X_test)
+    print('n_comps = {}; mae = {}, mse = {}, r2 = {}'.format(
+            n_comps, 
+            mean_absolute_error(y_test, y_pred),
+            mean_squared_error(y_test, y_pred),
+            r2_score(y_test, y_pred)))
+    return y_pred
 
 if __name__ == '__main__':
     X_train, X_test, y_train, y_test = get_data()
 
-    pls = PLSRegression(n_components=2)
-    pls.fit(X_train, y_train)
-    y_pred = pls.predict(X_test)
+    y_pred = test_pls(2, X_train, y_train, X_test, y_test)
+    plot_res(y_test, y_pred, 'pls.pdf')
 
-    plt.rc('font', size=30)
+    for n_comps in range(3, 101):
+        test_pls(n_comps, X_train, y_train, X_test, y_test, n_comps == 2)
 
-    axes = ['x', 'y', 'z']
-    plt.figure(figsize=(30, 30))
-    plt.suptitle("mean squared error is %f" % mean_squared_error(y_pred, y_test))
-    for i in range(3):
-        plt.subplot(3, 1, i+1)
-        plt.ylabel(axes[i], rotation=0, labelpad=20)
-        plt.xlabel('t', labelpad=20)
-        plt.plot(y_test[:,i], label='actual result')
-        plt.plot(y_pred[:,i], label='prediction')
-        plt.grid(True)
-        plt.legend(loc='upper right')
-
-    plt.savefig('pls.pdf')
