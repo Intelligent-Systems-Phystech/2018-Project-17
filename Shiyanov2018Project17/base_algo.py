@@ -66,7 +66,7 @@ if __name__ == '__main__':
     X_train, X_test, y_train, y_test = get_data()
 
     y_pred = test_pls(2, X_train, y_train, X_test, y_test)
-    plot_res(y_test, y_pred, 'pls.pdf')
+    plot_res(y_test, y_pred, 'base_algo.pdf')
 
     for n_comps in range(3, 101):
         test_pls(n_comps, X_train, y_train, X_test, y_test)
