@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 
 from base_algo import load_mats
+from main_algo import centers
 from PIL import Image, ImageDraw
 import imageio
 import numpy as np
+
+gif_centers = centers * 100
 
 def draw_circle(draw, center, radius, fill=None):
     draw.ellipse([(center[0] - radius, center[1] - radius), (center[0] + radius, center[1] + radius)], fill)
@@ -22,14 +25,7 @@ def gen_image(freqs):
     draw = ImageDraw.Draw(im)
     draw_border(draw)
 
-    centers = [(300, 100), (500, 100), (300, 300), (500, 300), (300, 500),
-               (500, 500), (700, 500), (600, 600), (300, 700), (500, 700), 
-               (700, 700), (200, 800), (400, 800), (600, 800), (100, 900), 
-               (300, 900), (500, 900), (700, 900), (200, 1000), (400, 1000),
-               (600, 1000), (100, 1100), (300, 1100), (500, 1100), (200, 1200),
-               (400, 1200), (600, 1200), (100, 1300), (300, 1300), (500, 1300),
-               (100, 1500), (300, 1500)]
-    for center, freq in zip(centers, freqs):
+    for center, freq in zip(gif_centers, freqs):
         draw_electrode(draw, center, int(freq))
 
     return np.array(im.resize((400, 800)))

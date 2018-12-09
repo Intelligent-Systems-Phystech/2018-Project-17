@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import os
 
@@ -21,8 +23,8 @@ def load_mats():
     # download link: https://drive.google.com/file/d/157SPnufv1VkxazY3H58HHqYJYpZ76Ghw/view?usp=sharing
     assert os.path.exists('./ECoG_X_test.mat'), 'Current directory should contain train and test mats'
 
-    X_test = loadmat('./ECoG_X_test.mat')
     X_train = loadmat('./ECoG_X_train.mat')
+    X_test = loadmat('./ECoG_X_test.mat')
     y_train = loadmat('./ECoG_Y_train.mat')
     y_test = loadmat('./ECoG_Y_test.mat')
     return X_train['X_train'], X_test['X_hold_out'], y_train['Y_train'], y_test['Y_hold_out']
@@ -31,7 +33,7 @@ def get_data():
     X_train, X_test, y_train, y_test = load_mats()
     return flatten_ndarray(X_train), flatten_ndarray(X_test), y_train, y_test
 
-def plot_res(y_train, y_pred, outfile):
+def plot_res(y_test, y_pred, outfile):
     plt.rc('font', size=30)
     axes = ['$x$', '$y$', '$z$']
     plt.figure(figsize=(30, 30))
@@ -67,5 +69,5 @@ if __name__ == '__main__':
     plot_res(y_test, y_pred, 'pls.pdf')
 
     for n_comps in range(3, 101):
-        test_pls(n_comps, X_train, y_train, X_test, y_test, n_comps == 2)
+        test_pls(n_comps, X_train, y_train, X_test, y_test)
 
